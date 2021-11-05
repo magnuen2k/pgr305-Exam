@@ -12,6 +12,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
+using Microsoft.Extensions.Options;
+using server.Models;
+
 namespace server
 {
     public class Startup
@@ -32,6 +35,27 @@ namespace server
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "server", Version = "v1" });
             });
+
+            services.Configure<DatabaseSettings>(
+                Configuration.GetSection(nameof(DatabaseSettings))
+            );
+
+            services.AddSingleton<IDatabaseSettings>(
+                sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value
+            );
+
+            // services.AddSingleton<MonsterService>();
+
+            services.AddCors(
+                options => {
+                    options.AddPolicy("AllowAny", 
+                        builder => builder
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                    );
+                }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +71,8 @@ namespace server
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("AllowAny");
 
             app.UseAuthorization();
 
