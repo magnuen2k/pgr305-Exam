@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 
 using Microsoft.Extensions.Options;
 using server.Models;
+using server.Services;
 
 namespace server
 {
@@ -44,7 +45,7 @@ namespace server
                 sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value
             );
 
-            // services.AddSingleton<MonsterService>();
+            services.AddSingleton<PlayerService>();
 
             services.AddCors(
                 options => {
