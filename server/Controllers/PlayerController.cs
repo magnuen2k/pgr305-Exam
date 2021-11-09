@@ -34,5 +34,11 @@ namespace server.Controllers
         {
             return _playerService.PostPlayer(newPlayer);
         }
+
+        [HttpPatch]
+        public Player UpdatePlayer(Player player)
+        {
+            return _playerService.UpdatePlayer(player);
+        }
     }
 }

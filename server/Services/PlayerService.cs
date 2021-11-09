@@ -24,13 +24,30 @@ namespace server.Services
         public Player GetPlayer(string Id)
         {
             Console.WriteLine("Id = " + Id);
-            return _players.Find<Player>(Builders<Player>.Filter.Eq("_id", Id)).FirstOrDefault();
+            return _players.Find<Player>(Builders<Player>.Filter.Eq("Id", Id)).FirstOrDefault();
         }
 
         public Player PostPlayer(Player newPlayer)
         {
             _players.InsertOne( newPlayer );
             return newPlayer;
+        }
+
+        public Player UpdatePlayer(Player player)
+        {
+            
+            var filter = Builders<Player>.Filter.Eq("Id", player.Id);
+            var update = Builders<Player>.Update
+                .Set("Name", player.Name)
+                .Set("Club", player.Club)
+                //.Set("Image", player.Image)
+                .Set("Nationality", player.Nationality)
+                .Set("YearBorn", player.YearBorn)
+                .Set("Position", player.Position);
+
+            return _players.FindOneAndUpdate(filter, update);
+            
+            //return player;
         }
     }
 }
