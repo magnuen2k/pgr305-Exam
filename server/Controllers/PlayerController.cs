@@ -6,7 +6,7 @@ using server.Services;
 namespace server.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PlayerController : ControllerBase
     {
         private readonly PlayerService _playerService;
@@ -19,6 +19,12 @@ namespace server.Controllers
         public IEnumerable<Player> GetPlayers()
         {
             return _playerService.GetPlayers();
+        }
+
+        [HttpPost]
+        public Player PostPlayer(Player newPlayer)
+        {
+            return _playerService.PostPlayer(newPlayer);
         }
     }
 }

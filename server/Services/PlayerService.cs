@@ -19,5 +19,11 @@ namespace server.Services
         {
             return _players.Find( player => true ).ToList();
         }
+
+        public Player PostPlayer(Player newPlayer)
+        {
+            _players.InsertOne( newPlayer );
+            return newPlayer;
+        }
     }
 }
