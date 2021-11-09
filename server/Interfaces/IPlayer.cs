@@ -1,9 +1,7 @@
 namespace server.Interfaces
 {
-    public interface IPlayer
+    public interface IPlayer : IPerson
     {
-        string Id { get; set; }
-        string Name { get; set; }
-        string Club { get; set; }
+        string Position { get; set; }
     }
 }

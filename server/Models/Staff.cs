@@ -1,10 +1,10 @@
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using server.Interfaces;
 
 namespace server.Models
 {
-    public class Player : IPlayer
+    public class Staff : IStaff
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -14,6 +14,6 @@ namespace server.Models
         public string Image { get; set; }
         public string Nationality { get; set; }
         public int YearBorn { get; set; }
-        public string Position { get; set; }
+        public string Role { get; set; }
     }
 }
