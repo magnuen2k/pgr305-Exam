@@ -21,5 +21,11 @@ namespace server.Controllers
         {
             return _staffService.GetStaff();
         }
+
+        [HttpPost]
+        public Staff PostStaff(Staff newStaff)
+        {
+            return _staffService.PostStaff(newStaff);
+        }
     }
 }

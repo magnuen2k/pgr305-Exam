@@ -19,5 +19,11 @@ namespace server.Services
         {
             return _staff.Find(staff => true).ToList();
         }
+
+        public Staff PostStaff(Staff newStaff)
+        {
+            _staff.InsertOne( newStaff );
+            return newStaff;
+        }
     }
 }
