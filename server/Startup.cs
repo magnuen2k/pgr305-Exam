@@ -46,6 +46,7 @@ namespace server
             );
 
             services.AddSingleton<PlayerService>();
+            services.AddSingleton<StaffService>();
 
             services.AddCors(
                 options => {

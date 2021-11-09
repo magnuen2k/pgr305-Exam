@@ -12,7 +12,7 @@ namespace server.Services
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-            _players = database.GetCollection<Player>(settings.CollectionName);
+            _players = database.GetCollection<Player>(settings.PlayerCollectionName);
         }
 
         public List<Player> GetPlayers()
