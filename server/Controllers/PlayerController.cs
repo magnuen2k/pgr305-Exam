@@ -21,6 +21,14 @@ namespace server.Controllers
             return _playerService.GetPlayers();
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<Player> GetPlayer(string id)
+        {
+            Player player = _playerService.GetPlayer(id);
+
+            return player != null ? player : NotFound();
+        }
+
         [HttpPost]
         public Player PostPlayer(Player newPlayer)
         {
