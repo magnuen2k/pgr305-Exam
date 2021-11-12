@@ -14,6 +14,7 @@ const PlayerItem: FC<IPlayer> = ({
     <div>
       <p>{name}</p>
       <p>{club}</p>
+      <img src={`https://localhost:5001/images/${image}`} alt={image} />
     </div>
   );
 };
