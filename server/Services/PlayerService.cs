@@ -21,10 +21,10 @@ namespace server.Services
             return _players.Find( player => true ).ToList();
         }
 
-        public Player GetPlayer(string Id)
+        public Player GetPlayer(string id)
         {
-            Console.WriteLine("Id = " + Id);
-            return _players.Find<Player>(Builders<Player>.Filter.Eq("Id", Id)).FirstOrDefault();
+            //return _players.Find<Player>(Builders<Player>.Filter.Eq("Id", id)).FirstOrDefault();
+            return _players.Find<Player>(player => player.Id == id).FirstOrDefault();
         }
 
         public Player PostPlayer(Player newPlayer)
@@ -33,21 +33,26 @@ namespace server.Services
             return newPlayer;
         }
 
-        public Player UpdatePlayer(Player player)
+        public Player UpdatePlayer(Player playerIn)
         {
             
-            var filter = Builders<Player>.Filter.Eq("Id", player.Id);
+            var filter = Builders<Player>.Filter.Eq("Id", playerIn.Id);
             var update = Builders<Player>.Update
-                .Set("Name", player.Name)
-                .Set("Club", player.Club)
+                .Set("Name", playerIn.Name)
+                .Set("Club", playerIn.Club)
                 //.Set("Image", player.Image)
-                .Set("Nationality", player.Nationality)
-                .Set("YearBorn", player.YearBorn)
-                .Set("Position", player.Position);
+                .Set("Nationality", playerIn.Nationality)
+                .Set("YearBorn", playerIn.YearBorn)
+                .Set("Position", playerIn.Position);
 
             return _players.FindOneAndUpdate(filter, update);
-            
-            //return player;
+
+            //_players.ReplaceOne(player => player.Id == playerIn.Id, playerIn); + gjøre funksjonen void
+        }
+
+        public void RemovePlayer(string id)
+        {
+            _players.DeleteOne(player => player.Id == id);
         }
     }
 }
