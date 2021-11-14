@@ -36,6 +36,12 @@ namespace server.Controllers
             return _staffService.PostStaff(newStaff);
         }
 
+        [HttpPatch]
+        public Staff UpdateStaff(Staff staff)
+        {
+            return _staffService.UpdateStaff(staff);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult DeleteStaff(string id)
         {
