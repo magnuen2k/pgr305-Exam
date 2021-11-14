@@ -23,7 +23,7 @@ namespace server.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Staff> GetStaff (string id)
+        public ActionResult<Staff> GetStaff(string id)
         {
             Staff staff = _staffService.GetStaff(id);
 
