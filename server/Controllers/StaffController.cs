@@ -22,10 +22,32 @@ namespace server.Controllers
             return _staffService.GetStaff();
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<Staff> GetStaff (string id)
+        {
+            Staff staff = _staffService.GetStaff(id);
+
+            return staff != null ? staff : NotFound();
+        }
+
         [HttpPost]
         public Staff PostStaff(Staff newStaff)
         {
             return _staffService.PostStaff(newStaff);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteStaff(string id)
+        {
+            var staff = _staffService.GetStaff(id);
+
+            if (staff == null)
+            {
+                return NotFound();
+            }
+
+            _staffService.RemoveStaff(staff.Id);
+            return NoContent();
         }
     }
 }
