@@ -20,10 +20,20 @@ namespace server.Services
             return _staff.Find(staff => true).ToList();
         }
 
+        public Staff GetStaff(string id)
+        {
+            return _staff.Find<Staff>(staff => staff.Id == id).FirstOrDefault();
+        }
+
         public Staff PostStaff(Staff newStaff)
         {
             _staff.InsertOne( newStaff );
             return newStaff;
+        }
+
+        public void RemoveStaff(string id)
+        {
+            _staff.DeleteOne(staff => staff.Id == id);
         }
     }
 }
