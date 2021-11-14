@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using server.Models;
@@ -39,6 +40,20 @@ namespace server.Controllers
         public Player UpdatePlayer(Player player)
         {
             return _playerService.UpdatePlayer(player);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeletePlayer(string id)
+        {
+            var player = _playerService.GetPlayer(id);
+
+            if (player == null)
+            {
+                return NotFound();
+            }
+            
+            _playerService.RemovePlayer(player.Id);
+            return NoContent();
         }
     }
 }
