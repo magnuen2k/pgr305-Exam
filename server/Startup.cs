@@ -47,6 +47,7 @@ namespace server
 
             services.AddSingleton<PlayerService>();
             services.AddSingleton<StaffService>();
+            services.AddSingleton<TrophyService>();
 
             services.AddCors(
                 options => {
