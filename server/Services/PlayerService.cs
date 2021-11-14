@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using MongoDB.Driver;
 using server.Models;
@@ -18,7 +17,7 @@ namespace server.Services
 
         public List<Player> GetPlayers()
         {
-            return _players.Find( player => true ).ToList();
+            return _players.Find(player => true).ToList();
         }
 
         public Player GetPlayer(string id)
@@ -29,11 +28,12 @@ namespace server.Services
 
         public Player PostPlayer(Player newPlayer)
         {
-            _players.InsertOne( newPlayer );
+            _players.InsertOne(newPlayer);
             return newPlayer;
         }
-
-        public Player UpdatePlayer(Player playerIn)
+        
+        /*
+        public void UpdatePlayer(Player playerIn)
         {
             
             var filter = Builders<Player>.Filter.Eq("Id", playerIn.Id);
@@ -46,8 +46,14 @@ namespace server.Services
                 .Set("Position", playerIn.Position);
 
             return _players.FindOneAndUpdate(filter, update);
+            
 
-            //_players.ReplaceOne(player => player.Id == playerIn.Id, playerIn); + gjøre funksjonen void
+            _players.ReplaceOne(player => player.Id == playerIn.Id, playerIn);
+        }
+        */
+        public void UpdatePlayer(Player playerIn)
+        {
+            _players.ReplaceOne(player => player.Id == playerIn.Id, playerIn);
         }
 
         public void RemovePlayer(string id)

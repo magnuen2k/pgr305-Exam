@@ -31,7 +31,7 @@ namespace server.Services
             return newStaff;
         }
 
-        public Staff UpdateStaff(Staff staffIn)
+        /*public void UpdateStaff(Staff staffIn)
         {
             
             var filter = Builders<Staff>.Filter.Eq("Id", staffIn.Id);
@@ -45,7 +45,12 @@ namespace server.Services
 
             return _staff.FindOneAndUpdate(filter, update);
 
-            //staffIn.ReplaceOne(staff => staff.Id == staffIn.Id, staffIn); + gjøre funksjonen void
+            _staff.ReplaceOne(staff => staff.Id == staffIn.Id, staffIn);
+        }*/
+
+        public void UpdateStaff(Staff staffIn)
+        {
+            _staff.ReplaceOne(staff => staff.Id == staffIn.Id, staffIn);
         }
 
         public void RemoveStaff(string id)

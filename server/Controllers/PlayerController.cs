@@ -36,10 +36,27 @@ namespace server.Controllers
             return _playerService.PostPlayer(newPlayer);
         }
 
+        /*
         [HttpPatch]
         public Player UpdatePlayer(Player player)
         {
-            return _playerService.UpdatePlayer(player);
+            _playerService.UpdatePlayer(player);
+            return player;
+        }
+        */
+        
+        [HttpPut]
+        public IActionResult PutPlayer(Player playerIn)
+        {
+            var player = _playerService.GetPlayer(playerIn.Id);
+            
+            if (player == null)
+            {
+                return NotFound();
+            }
+
+            _playerService.UpdatePlayer(playerIn);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]

@@ -36,10 +36,25 @@ namespace server.Controllers
             return _staffService.PostStaff(newStaff);
         }
 
-        [HttpPatch]
+        /*[HttpPatch]
         public Staff UpdateStaff(Staff staff)
         {
-            return _staffService.UpdateStaff(staff);
+            _staffService.UpdateStaff(staff);
+            return staff;
+        }*/
+
+        [HttpPut]
+        public IActionResult PutStaff(Staff staffIn)
+        {
+            var staff = _staffService.GetStaff(staffIn.Id);
+
+            if (staff == null)
+            {
+                return NotFound();
+            }
+            
+            _staffService.UpdateStaff(staffIn);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
