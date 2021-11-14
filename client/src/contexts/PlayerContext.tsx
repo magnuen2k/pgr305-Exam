@@ -17,12 +17,12 @@ export const PlayerProvider: FC = ({ children }) => {
     setPlayers(res);
   };
 
-  const getPlayerById = async (id: string) => {
-    console.log("get a player by id: " + id);
+  const getPlayerById = (id: string) => {
+    return players.find((p) => p.id === id) as IPlayer;
   };
 
   return (
-    <PlayerContext.Provider value={{ players }}>
+    <PlayerContext.Provider value={{ players, getPlayerById }}>
       {children}
     </PlayerContext.Provider>
   );
