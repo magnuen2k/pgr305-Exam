@@ -1,8 +1,7 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import { PlayerProvider } from "./contexts/PlayerContext";
 import Routing from "./routing/Routing";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
