@@ -3,10 +3,11 @@ import PlayerList from "../components/Player/PlayerList";
 
 const Players = () => {
   return (
-    <div>
-      <h3>Players</h3>
+    <>
+      <p>Search bar here</p>
+      <p>Filter options</p>
       <PlayerList />
-    </div>
+    </>
   );
 };
 

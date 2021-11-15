@@ -13,19 +13,16 @@ const PlayerItem: FC<IPlayer> = ({
   position,
 }) => {
   return (
-    <Card className="card-container">
-      <div className="card-image-container">
+    <Card className="card-container player-card">
+      <div className="card-image-container img-responsive">
         <Card.Img
           variant="top"
           src={`https://localhost:5001/images/${image}`}
           className="img-fluid"
         />
       </div>
-      <Card.Title>{name}</Card.Title>
-      <Card.Text>{club}</Card.Text>
-      <Card.Text>{nationality}</Card.Text>
-      <Card.Text>{dateOfBirth}</Card.Text>
-      <Card.Text>{position}</Card.Text>
+      <Card.Title className="player-card-name">{name}</Card.Title>
+      <Card.Text className="player-card-position">{position}</Card.Text>
     </Card>
   );
 };

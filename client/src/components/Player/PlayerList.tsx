@@ -29,7 +29,6 @@ const PlayerList: FC = () => {
 
   return (
     <Container>
-      <p>All players</p>
       <Row>{createPlayerList()}</Row>
     </Container>
   );
