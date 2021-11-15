@@ -35,15 +35,6 @@ namespace server.Controllers
             return _playerService.PostPlayer(newPlayer);
         }
 
-        /*
-        [HttpPatch]
-        public Player UpdatePlayer(Player player)
-        {
-            _playerService.UpdatePlayer(player);
-            return player;
-        }
-        */
-        
         [HttpPut]
         public IActionResult PutPlayer(Player playerIn)
         {

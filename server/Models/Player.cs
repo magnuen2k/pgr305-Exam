@@ -1,3 +1,4 @@
+using System;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using server.Interfaces;
@@ -13,7 +14,8 @@ namespace server.Models
         public string Club { get; set; }
         public string Image { get; set; }
         public string Nationality { get; set; }
-        public int YearBorn { get; set; }
+        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
+        public DateTime DateOfBirth { get; set; }
         public string Position { get; set; }
     }
 }

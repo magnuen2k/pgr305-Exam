@@ -36,13 +36,6 @@ namespace server.Controllers
             return _staffService.PostStaff(newStaff);
         }
 
-        /*[HttpPatch]
-        public Staff UpdateStaff(Staff staff)
-        {
-            _staffService.UpdateStaff(staff);
-            return staff;
-        }*/
-
         [HttpPut]
         public IActionResult PutStaff(Staff staffIn)
         {

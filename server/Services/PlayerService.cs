@@ -22,7 +22,6 @@ namespace server.Services
 
         public Player GetPlayer(string id)
         {
-            //return _players.Find<Player>(Builders<Player>.Filter.Eq("Id", id)).FirstOrDefault();
             return _players.Find<Player>(player => player.Id == id).FirstOrDefault();
         }
 
@@ -32,25 +31,6 @@ namespace server.Services
             return newPlayer;
         }
         
-        /*
-        public void UpdatePlayer(Player playerIn)
-        {
-            
-            var filter = Builders<Player>.Filter.Eq("Id", playerIn.Id);
-            var update = Builders<Player>.Update
-                .Set("Name", playerIn.Name)
-                .Set("Club", playerIn.Club)
-                //.Set("Image", player.Image)
-                .Set("Nationality", playerIn.Nationality)
-                .Set("YearBorn", playerIn.YearBorn)
-                .Set("Position", playerIn.Position);
-
-            return _players.FindOneAndUpdate(filter, update);
-            
-
-            _players.ReplaceOne(player => player.Id == playerIn.Id, playerIn);
-        }
-        */
         public void UpdatePlayer(Player playerIn)
         {
             _players.ReplaceOne(player => player.Id == playerIn.Id, playerIn);

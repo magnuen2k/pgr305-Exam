@@ -31,23 +31,6 @@ namespace server.Services
             return newStaff;
         }
 
-        /*public void UpdateStaff(Staff staffIn)
-        {
-            
-            var filter = Builders<Staff>.Filter.Eq("Id", staffIn.Id);
-            var update = Builders<Staff>.Update
-                .Set("Name", staffIn.Name)
-                .Set("Club", staffIn.Club)
-                //.Set("Image", player.Image)
-                .Set("Nationality", staffIn.Nationality)
-                .Set("YearBorn", staffIn.YearBorn)
-                .Set("Role", staffIn.Role);
-
-            return _staff.FindOneAndUpdate(filter, update);
-
-            _staff.ReplaceOne(staff => staff.Id == staffIn.Id, staffIn);
-        }*/
-
         public void UpdateStaff(Staff staffIn)
         {
             _staff.ReplaceOne(staff => staff.Id == staffIn.Id, staffIn);

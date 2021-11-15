@@ -1,4 +1,6 @@
-﻿namespace server.Interfaces
+﻿using System;
+
+namespace server.Interfaces
 {
     public interface IPerson
     {
@@ -7,6 +9,6 @@
         string Club { get; set; }
         string Image { get; set; }
         string Nationality { get; set; }
-        int YearBorn { get; set; }
+        DateTime DateOfBirth { get; set; }
     }
 }
