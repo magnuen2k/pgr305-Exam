@@ -22,7 +22,7 @@ namespace server.Controllers
             return _staffService.GetStaff();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:length(24)}")]
         public ActionResult<Staff> GetStaff(string id)
         {
             Staff staff = _staffService.GetStaff(id);
@@ -50,7 +50,7 @@ namespace server.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:length(24)}")]
         public IActionResult DeleteStaff(string id)
         {
             var staff = _staffService.GetStaff(id);

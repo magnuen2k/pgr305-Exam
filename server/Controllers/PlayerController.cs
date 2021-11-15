@@ -21,7 +21,7 @@ namespace server.Controllers
             return _playerService.GetPlayers();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:length(24)}")]
         public ActionResult<Player> GetPlayer(string id)
         {
             Player player = _playerService.GetPlayer(id);
@@ -49,7 +49,7 @@ namespace server.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:length(24)}")]
         public IActionResult DeletePlayer(string id)
         {
             var player = _playerService.GetPlayer(id);
