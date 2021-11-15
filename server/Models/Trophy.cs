@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using server.Interfaces;
 
@@ -10,7 +11,7 @@ namespace server.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public string TournamentName { get; set; }
-        public int Victories { get; set; }
+        public List<int> YearsWon { get; set; }
         public string Image { get; set; }
     }
 }
