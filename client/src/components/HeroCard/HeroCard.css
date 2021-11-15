@@ -1,0 +1,19 @@
+.hero-bg {
+  overflow: hidden;
+  height: 50rem;
+  position: relative;
+}
+
+.hero-bg-color {
+  background-color: transparent;
+}
+
+.hero-img {
+  position: absolute;
+}
+
+@media screen and (min-width: 1460px) {
+  .hero-img {
+    width: 100%;
+  }
+}
