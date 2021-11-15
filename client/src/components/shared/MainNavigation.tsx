@@ -6,8 +6,20 @@ const MainNavigation: FC = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
       <Container>
-        <Navbar.Brand as={Link} to="/">
-          lfc-db
+        <Navbar.Brand
+          as={Link}
+          to="/"
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <img
+            src="https://localhost:5001/images/lfc-logo.png"
+            alt="Liverpool Logo"
+            width="40"
+            height="40"
+            style={{ marginRight: ".5rem" }}
+            className="d-inline-block align-top"
+          />
+          LFC-DB
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

@@ -1,0 +1,15 @@
+.card-container {
+  transition: 0.1s ease;
+  cursor: pointer;
+}
+
+.card-container:hover {
+  transform: scale(1.01);
+  /* backdrop-filter: blur(0); */
+}
+
+.card-image-container {
+  height: 20rem;
+  overflow: hidden;
+  transition: 0.1s ease;
+}

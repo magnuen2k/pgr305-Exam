@@ -4,6 +4,6 @@ export interface IPlayer {
   club: string;
   image: string;
   nationality: string;
-  yearBorn: number;
+  dateOfBirth: Date;
   position: string;
 }

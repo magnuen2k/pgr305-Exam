@@ -1,5 +1,7 @@
 import React, { FC } from "react";
+import { Card } from "react-bootstrap";
 import { IPlayer } from "../../interfaces/IPlayer";
+import "./Player.css";
 
 const PlayerItem: FC<IPlayer> = ({
   id,
@@ -7,15 +9,24 @@ const PlayerItem: FC<IPlayer> = ({
   club,
   image,
   nationality,
-  yearBorn,
+  dateOfBirth,
   position,
 }) => {
   return (
-    <div>
-      <p>{name}</p>
-      <p>{club}</p>
-      <img src={`https://localhost:5001/images/${image}`} alt={image} />
-    </div>
+    <Card className="card-container">
+      <div className="card-image-container">
+        <Card.Img
+          variant="top"
+          src={`https://localhost:5001/images/${image}`}
+          className="img-fluid"
+        />
+      </div>
+      <Card.Title>{name}</Card.Title>
+      <Card.Text>{club}</Card.Text>
+      <Card.Text>{nationality}</Card.Text>
+      <Card.Text>{dateOfBirth}</Card.Text>
+      <Card.Text>{position}</Card.Text>
+    </Card>
   );
 };
 
