@@ -22,7 +22,7 @@ namespace server.Controllers
             return _trophyService.GetTrophies();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:length(24)}")]
         public ActionResult<Trophy> GetTrophy(string id)
         {
             Trophy trophy = _trophyService.GetTrophy(id);
@@ -50,7 +50,7 @@ namespace server.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:length(24)}")]
         public IActionResult DeleteTrophy(string id)
         {
             var trophy = _trophyService.GetTrophy(id);
