@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as Scroll from "react-scroll";
 import { Link as ScrollLink } from "react-scroll";
@@ -38,6 +38,11 @@ const MainNavigation: FC = () => {
             </Nav.Link>
             <Nav.Link as={Link} to="/staff">
               Staff
+            </Nav.Link>
+          </Nav>
+          <Nav>
+            <Nav.Link as={Link} to="/admin">
+              <Button variant="outline-danger">Admin</Button>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
