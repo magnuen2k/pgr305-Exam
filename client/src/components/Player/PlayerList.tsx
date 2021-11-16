@@ -10,6 +10,7 @@ const PlayerList: FC = () => {
   const { players } = useContext(PlayerContext) as PlayerContextType;
   const [allPlayers, setAllPlayers] = useState<IPlayer[]>([]);
   const [searchText, setSearchText] = useState<string>("");
+  const [filterText, setFilterText] = useState<string>("");
 
   const createPlayerList = () => {
     // Display either full list of players or filtered copy
@@ -33,21 +34,23 @@ const PlayerList: FC = () => {
     });
   };
 
-  const handleChange = (e: any) => {
-    if (e.target.value === "reset") {
+  useEffect(() => {
+    console.log(filterText);
+
+    if (filterText === "reset") {
       setAllPlayers(players);
     } else {
       setAllPlayers(
-        players.filter((player: IPlayer) => player.position === e.target.value)
+        players.filter((player: IPlayer) => player.position === filterText)
       );
     }
-  };
+  }, [filterText]);
 
   useEffect(() => {
     if (searchText.length === 0) {
       setAllPlayers(players);
     } else {
-      let filteredPlayers = allPlayers.filter((p) => {
+      let filteredPlayers = players.filter((p) => {
         const name = p.name.toLowerCase();
         return name.includes(searchText);
       });
@@ -57,15 +60,15 @@ const PlayerList: FC = () => {
 
   return (
     <Container>
-      <InputGroup>
+      {/* <InputGroup>
         <FormControl
           placeholder="Search by player name"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
         />
-      </InputGroup>
+      </InputGroup> */}
 
-      <FilterOptions handleChange={handleChange} />
+      <FilterOptions setFilterText={setFilterText} />
       <Row>{createPlayerList()}</Row>
     </Container>
   );

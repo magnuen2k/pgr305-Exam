@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import { Form } from "react-bootstrap";
 
 interface IFilterOptionsProps {
-  handleChange: (e: any) => void;
+  setFilterText: (value: string) => void;
 }
 
-const FilterOptions: FC<IFilterOptionsProps> = ({ handleChange }) => {
+const FilterOptions: FC<IFilterOptionsProps> = ({ setFilterText }) => {
   return (
-    <Form.Select onChange={handleChange}>
+    <Form.Select onChange={(e) => setFilterText(e.target.value)}>
       <option>-- Filter by position --</option>
       <option value="Keeper">Keeper</option>
       <option value="Defender">Defender</option>
