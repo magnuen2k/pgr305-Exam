@@ -21,8 +21,12 @@ export const PlayerProvider: FC = ({ children }) => {
     return players.find((p) => p.id === id) as IPlayer;
   };
 
+  const addPlayer = async (player: IPlayer) => {
+    return PlayerService.addPlayer(player);
+  };
+
   return (
-    <PlayerContext.Provider value={{ players, getPlayerById }}>
+    <PlayerContext.Provider value={{ players, getPlayerById, addPlayer }}>
       {children}
     </PlayerContext.Provider>
   );

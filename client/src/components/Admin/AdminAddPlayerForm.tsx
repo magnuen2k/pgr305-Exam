@@ -1,7 +1,9 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
+import { PlayerContextType } from "../../types/PlayerContextType";
 
 const AdminAddPlayerForm = () => {
   const initialState = {
@@ -15,8 +17,9 @@ const AdminAddPlayerForm = () => {
 
   const [player, setPlayer] = useState<IPlayer>(initialState);
   const [file, setFile] = useState<File>();
+  const { addPlayer } = useContext(PlayerContext) as PlayerContextType;
 
-  const addPlayer = async () => {
+  const addNewPlayer = async () => {
     // Upload image to server, if successful, add player to database
     let data = new FormData();
 
@@ -41,6 +44,7 @@ const AdminAddPlayerForm = () => {
 
     if (res?.status === 201) {
       // Add player to database
+      addPlayer(player);
     }
 
     console.log(player);
@@ -94,7 +98,7 @@ const AdminAddPlayerForm = () => {
             }}
           />
         </Form.Group>
-        <Button onClick={addPlayer}>Add player</Button>
+        <Button onClick={addNewPlayer}>Add player</Button>
       </Form>
     </div>
   );
