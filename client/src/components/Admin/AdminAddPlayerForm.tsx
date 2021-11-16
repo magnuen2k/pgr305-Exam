@@ -37,6 +37,13 @@ const AdminAddPlayerForm = () => {
           }
         />
         <FormControl
+          placeholder="Nationality"
+          type="date"
+          onChange={(e) =>
+            setPlayer({ ...player, dateOfBirth: new Date(e.target.value) })
+          }
+        />
+        <FormControl
           placeholder="Position"
           value={player.position}
           onChange={(e) => setPlayer({ ...player, position: e.target.value })}
