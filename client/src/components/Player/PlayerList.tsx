@@ -18,9 +18,8 @@ const PlayerList: FC = () => {
 
     return list.map((player: IPlayer, key: number) => {
       return (
-        <Col md={6} lg={4} xl={3} className="mt-5">
+        <Col md={6} lg={4} xl={3} className="mt-5" key={key}>
           <PlayerItem
-            key={key}
             id={player.id}
             name={player.name}
             club={player.club}
