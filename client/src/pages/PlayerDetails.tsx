@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router";
 import { PlayerContext } from "../contexts/PlayerContext";
 import { IPlayer } from "../interfaces/IPlayer";
@@ -24,8 +24,42 @@ const PlayerDetails: FC = () => {
 
   return (
     <Container>
-      <h3>Du har bedt om: {id}</h3>
-      <h4>{player?.name}</h4>
+      <Card className="mt-5">
+        <Card.Header>
+          <Card.Title>{player?.name}</Card.Title>
+        </Card.Header>
+        <Card.Body>
+          <Row md={2} sm={1} className="py-5 mt-2">
+            <Col style={{ display: "flex", justifyContent: "center" }}>
+              <Card.Img
+                src={`https://localhost:5001/images/${player?.image}`}
+                style={{ width: "20rem" }}
+                alt={player?.image}
+              />
+            </Col>
+            <Col
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+              }}
+            >
+              <Card>
+                <Card.Header>
+                  <Card.Title>Player Details:</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                  <Card.Text>Name: {player?.name}</Card.Text>
+                  <Card.Text>Club: {player?.club}</Card.Text>
+                  <Card.Text>Date of birth: {player?.dateOfBirth}</Card.Text>
+                  <Card.Text>Nationality: {player?.nationality}</Card.Text>
+                  <Card.Text>Position: {player?.position}</Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Card.Body>
+      </Card>
     </Container>
   );
 };
