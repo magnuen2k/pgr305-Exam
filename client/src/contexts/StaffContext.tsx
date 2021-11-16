@@ -17,7 +17,17 @@ export const StaffProvider: FC = ({ children }) => {
     setStaff(res);
   };
 
+  const getStaffById = (id: string) => {
+    return staff.find((s) => s.id === id) as IStaff;
+  };
+
+  const addStaff = async (staff: IStaff) => {
+    return await StaffService.addStaff(staff);
+  };
+
   return (
-    <StaffContext.Provider value={{ staff }}>{children}</StaffContext.Provider>
+    <StaffContext.Provider value={{ staff, getStaffById, addStaff }}>
+      {children}
+    </StaffContext.Provider>
   );
 };

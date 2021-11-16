@@ -9,7 +9,13 @@ export const StaffService = (function () {
     return res.data as IStaff[];
   };
 
+  const addStaff = async (staff: IStaff) => {
+    const res = await axios.post(baseUrl, staff);
+    return res;
+  };
+
   return {
     getStaff,
+    addStaff,
   };
 })();
