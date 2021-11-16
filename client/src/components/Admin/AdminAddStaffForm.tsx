@@ -4,7 +4,8 @@ import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { StaffContext } from "../../contexts/StaffContext";
 import { IStaff } from "../../interfaces/IStaff";
 import { StaffContextType } from "../../types/StaffContextType";
-import { API_URL } from "../../utils/Constants";
+import { API_URL, STAFF_ROLES } from "../../utils/Constants";
+import FilterOptions from "../FilterOptions";
 
 const AdminAddStaffForm = () => {
   const initialState = {
@@ -15,8 +16,6 @@ const AdminAddStaffForm = () => {
     dateOfBirth: new Date(),
     role: "",
   };
-
-  const roles = ["Manager", "Coach", "Scout", "Physiotherapist"];
 
   const [staff, setStaff] = useState<IStaff>(initialState);
   const [file, setFile] = useState<File>();
@@ -95,9 +94,10 @@ const AdminAddStaffForm = () => {
           />
         </Form.Group>
         <Form.Group>
+          {/* <FilterOptions /> */}
           <Form.Select onChange={handleRole}>
             <option value="default">-- Choose role --</option>
-            {roles.map((role, key) => (
+            {STAFF_ROLES.map((role, key) => (
               <option key={key} value={role}>
                 {role}
               </option>

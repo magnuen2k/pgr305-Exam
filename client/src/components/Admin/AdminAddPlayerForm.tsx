@@ -4,7 +4,7 @@ import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
-import { API_URL } from "../../utils/Constants";
+import { API_URL, PLAYER_POSITIONS } from "../../utils/Constants";
 
 const AdminAddPlayerForm = () => {
   const initialState = {
@@ -15,8 +15,6 @@ const AdminAddPlayerForm = () => {
     dateOfBirth: new Date(),
     position: "",
   };
-
-  const positions = ["Keeper", "Defender", "Midfielder", "Forward"];
 
   const [player, setPlayer] = useState<IPlayer>(initialState);
   const [file, setFile] = useState<File>();
@@ -105,7 +103,7 @@ const AdminAddPlayerForm = () => {
         <Form.Group>
           <Form.Select onChange={handlePosition}>
             <option value="default">-- Choose position --</option>
-            {positions.map((pos, key) => (
+            {PLAYER_POSITIONS.map((pos, key) => (
               <option key={key} value={pos}>
                 {pos}
               </option>

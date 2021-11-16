@@ -3,6 +3,7 @@ import { Row, Col, Container, InputGroup, FormControl } from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
+import { PLAYER_POSITIONS } from "../../utils/Constants";
 import FilterOptions from "../FilterOptions";
 import PlayerItem from "./PlayerItem";
 
@@ -68,7 +69,7 @@ const PlayerList: FC = () => {
         />
       </InputGroup> */}
 
-      <FilterOptions setFilterText={setFilterText} />
+      <FilterOptions setFilterText={setFilterText} options={PLAYER_POSITIONS} />
       <Row>{createPlayerList()}</Row>
     </Container>
   );

@@ -3,17 +3,16 @@ import { Form } from "react-bootstrap";
 
 interface IFilterOptionsProps {
   setFilterText: (value: string) => void;
+  options: string[];
 }
 
-const FilterOptions: FC<IFilterOptionsProps> = ({ setFilterText }) => {
+const FilterOptions: FC<IFilterOptionsProps> = ({ setFilterText, options }) => {
   return (
     <Form.Select onChange={(e) => setFilterText(e.target.value)}>
-      <option>-- Filter by position --</option>
-      <option value="Keeper">Keeper</option>
-      <option value="Defender">Defender</option>
-      <option value="Midfielder">Midfielder</option>
-      <option value="Forward">Forward</option>
-      <option value="reset">Reset</option>
+      <option>-- Show All --</option>
+      {options.map((o) => (
+        <option value={o}>{o}</option>
+      ))}
     </Form.Select>
   );
 };
