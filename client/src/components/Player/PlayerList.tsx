@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Row, Col, Container, Form } from "react-bootstrap";
+import { Row, Col, Container, InputGroup, FormControl } from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
@@ -9,6 +9,7 @@ import PlayerItem from "./PlayerItem";
 const PlayerList: FC = () => {
   const { players } = useContext(PlayerContext) as PlayerContextType;
   const [allPlayers, setAllPlayers] = useState<IPlayer[]>([]);
+  const [searchText, setSearchText] = useState<string>("");
 
   const createPlayerList = () => {
     // Display either full list of players or filtered copy
@@ -42,8 +43,28 @@ const PlayerList: FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (searchText.length === 0) {
+      setAllPlayers(players);
+    } else {
+      let filteredPlayers = allPlayers.filter((p) => {
+        const name = p.name.toLowerCase();
+        return name.includes(searchText);
+      });
+      setAllPlayers(filteredPlayers);
+    }
+  }, [searchText]);
+
   return (
     <Container>
+      <InputGroup>
+        <FormControl
+          placeholder="Search by player name"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+      </InputGroup>
+
       <FilterOptions handleChange={handleChange} />
       <Row>{createPlayerList()}</Row>
     </Container>
