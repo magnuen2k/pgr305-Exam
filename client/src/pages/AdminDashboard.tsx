@@ -8,7 +8,8 @@ const AdminDashboard = () => {
       <p>Admin dashboard</p>
 
       <Link to="/admin/addPlayer">Add a player</Link>
-      <Link to="/admin/addStadd">Add staff</Link>
+      <Link to="/admin/deletePlayer">Delete player</Link>
+      <Link to="/admin/addStaff">Add staff</Link>
     </Container>
   );
 };

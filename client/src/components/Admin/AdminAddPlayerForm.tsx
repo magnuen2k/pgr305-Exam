@@ -48,16 +48,16 @@ const AdminAddPlayerForm = () => {
         let playerRes;
 
         try {
-          playerRes = addPlayer(player);
+          playerRes = await addPlayer(player);
         } catch (e) {
           console.log(e);
         }
 
         console.log(playerRes);
 
-        /* if (playerRes.status === 200) {
+        if (playerRes && playerRes.status === 200) {
           setResponse("Success");
-        } */
+        }
       }
     }
 
@@ -110,11 +110,6 @@ const AdminAddPlayerForm = () => {
               </option>
             ))}
           </Form.Select>
-          {/* <FormControl
-            placeholder="Position"
-            value={player.position}
-            onChange={(e) => setPlayer({ ...player, position: e.target.value })}
-          /> */}
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Control
@@ -126,10 +121,11 @@ const AdminAddPlayerForm = () => {
           />
           {file ? "" : "You need to select a file to upload"}
         </Form.Group>
-        <Button onClick={addNewPlayer} disabled={file ? false : true}>
+        <Button onClick={addNewPlayer} disabled={!file}>
           Add player
         </Button>
       </Form>
+      <p>{response}</p>
     </div>
   );
 };
