@@ -2,13 +2,13 @@ import React, { FC } from "react";
 import { Form } from "react-bootstrap";
 
 interface IFilterOptionsProps {
-  setFilterText: (value: string) => void;
+  handleChange: (e: any) => void;
   options: string[];
 }
 
-const FilterOptions: FC<IFilterOptionsProps> = ({ setFilterText, options }) => {
+const FilterOptions: FC<IFilterOptionsProps> = ({ handleChange, options }) => {
   return (
-    <Form.Select onChange={(e) => setFilterText(e.target.value)}>
+    <Form.Select onChange={handleChange}>
       <option>-- Show All --</option>
       {options.map((o) => (
         <option value={o}>{o}</option>

@@ -94,20 +94,7 @@ const AdminAddStaffForm = () => {
           />
         </Form.Group>
         <Form.Group>
-          {/* <FilterOptions /> */}
-          <Form.Select onChange={handleRole}>
-            <option value="default">-- Choose role --</option>
-            {STAFF_ROLES.map((role, key) => (
-              <option key={key} value={role}>
-                {role}
-              </option>
-            ))}
-          </Form.Select>
-          {/* <FormControl
-            placeholder="Position"
-            value={player.position}
-            onChange={(e) => setPlayer({ ...player, position: e.target.value })}
-          /> */}
+          <FilterOptions handleChange={handleRole} options={STAFF_ROLES} />
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Control

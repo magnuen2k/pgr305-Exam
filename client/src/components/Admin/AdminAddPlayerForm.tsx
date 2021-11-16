@@ -5,6 +5,7 @@ import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
 import { API_URL, PLAYER_POSITIONS } from "../../utils/Constants";
+import FilterOptions from "../FilterOptions";
 
 const AdminAddPlayerForm = () => {
   const initialState = {
@@ -101,14 +102,10 @@ const AdminAddPlayerForm = () => {
           />
         </Form.Group>
         <Form.Group>
-          <Form.Select onChange={handlePosition}>
-            <option value="default">-- Choose position --</option>
-            {PLAYER_POSITIONS.map((pos, key) => (
-              <option key={key} value={pos}>
-                {pos}
-              </option>
-            ))}
-          </Form.Select>
+          <FilterOptions
+            handleChange={handlePosition}
+            options={PLAYER_POSITIONS}
+          />
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Control

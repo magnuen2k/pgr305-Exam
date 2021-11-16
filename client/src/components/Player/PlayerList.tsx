@@ -69,7 +69,10 @@ const PlayerList: FC = () => {
         />
       </InputGroup> */}
 
-      <FilterOptions setFilterText={setFilterText} options={PLAYER_POSITIONS} />
+      <FilterOptions
+        handleChange={(e: any) => setFilterText(e.target.value)}
+        options={PLAYER_POSITIONS}
+      />
       <Row>{createPlayerList()}</Row>
     </Container>
   );
