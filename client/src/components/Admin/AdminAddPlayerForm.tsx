@@ -4,6 +4,7 @@ import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
+import { API_URL } from "../../utils/Constants";
 
 const AdminAddPlayerForm = () => {
   const initialState = {
@@ -33,7 +34,7 @@ const AdminAddPlayerForm = () => {
       try {
         res = await axios({
           method: "POST",
-          url: "https://localhost:5001/ImageUpload/SaveImage",
+          url: `${API_URL}/ImageUpload/SaveImage`,
           data: data,
           headers: {
             "Content-Type": "multipart/form-data",

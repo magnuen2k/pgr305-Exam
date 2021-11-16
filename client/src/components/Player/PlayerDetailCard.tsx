@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { IPlayer } from "../../interfaces/IPlayer";
+import { API_URL } from "../../utils/Constants";
 import { getAge, getSimpleBirthOfDate } from "../../utils/GetAge";
 
 const PlayerDetailCard: FC<IPlayer> = ({
@@ -28,7 +29,7 @@ const PlayerDetailCard: FC<IPlayer> = ({
           <Row md={2} sm={1} className="py-5 mt-2">
             <Col style={{ display: "flex", justifyContent: "center" }}>
               <Card.Img
-                src={`https://localhost:5001/images/${image}`}
+                src={`${API_URL}/images/${image}`}
                 style={{ width: "20rem" }}
                 alt={image}
               />

@@ -3,6 +3,7 @@ import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as Scroll from "react-scroll";
 import { Link as ScrollLink } from "react-scroll";
+import { API_URL } from "../../utils/Constants";
 
 const MainNavigation: FC = () => {
   let scroll = Scroll.animateScroll;
@@ -21,7 +22,7 @@ const MainNavigation: FC = () => {
           style={{ display: "flex", alignItems: "center" }}
         >
           <img
-            src="https://localhost:5001/images/lfc-logo.png"
+            src={`${API_URL}/images/lfc-logo.png`}
             alt="Liverpool Logo"
             width="40"
             height="40"

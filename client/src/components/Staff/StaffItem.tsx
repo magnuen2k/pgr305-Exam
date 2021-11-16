@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { IStaff } from "../../interfaces/IStaff";
+import { API_URL } from "../../utils/Constants";
 
 const StaffItem: FC<IStaff> = ({
   id,
@@ -18,7 +19,7 @@ const StaffItem: FC<IStaff> = ({
         <div className="card-image-container img-responsive">
           <Card.Img
             variant="top"
-            src={`https://localhost:5001/images/${image}`}
+            src={`${API_URL}/images/${image}`}
             className="img-fluid"
           />
         </div>

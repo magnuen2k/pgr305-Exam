@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { IPlayer } from "../../interfaces/IPlayer";
+import { API_URL } from "../../utils/Constants";
 import "./Player.css";
 
 const PlayerItem: FC<IPlayer> = ({
@@ -19,7 +20,7 @@ const PlayerItem: FC<IPlayer> = ({
         <div className="card-image-container img-responsive">
           <Card.Img
             variant="top"
-            src={`https://localhost:5001/images/${image}`}
+            src={`${API_URL}/images/${image}`}
             className="img-fluid"
           />
         </div>

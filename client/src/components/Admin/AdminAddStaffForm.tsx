@@ -4,6 +4,7 @@ import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { StaffContext } from "../../contexts/StaffContext";
 import { IStaff } from "../../interfaces/IStaff";
 import { StaffContextType } from "../../types/StaffContextType";
+import { API_URL } from "../../utils/Constants";
 
 const AdminAddStaffForm = () => {
   const initialState = {
@@ -31,7 +32,7 @@ const AdminAddStaffForm = () => {
       try {
         res = await axios({
           method: "POST",
-          url: "https://localhost:5001/ImageUpload/SaveImage",
+          url: `${API_URL}/ImageUpload/SaveImage`,
           data: data,
           headers: {
             "Content-Type": "multipart/form-data",

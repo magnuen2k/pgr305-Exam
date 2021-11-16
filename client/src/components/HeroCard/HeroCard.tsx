@@ -1,12 +1,13 @@
 import React from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import styled from "styled-components";
+import { API_URL } from "../../utils/Constants";
 
 const HeroCard = () => {
   return (
     <StyledHeroBg>
       <StyledHeroImg
-        src="https://localhost:5001/images/header-wallpaper-full.png"
+        src={`${API_URL}/images/header-wallpaper-full.png`}
         alt="wallpaper hero"
       />
       <Container>
@@ -21,7 +22,7 @@ const HeroCard = () => {
                 </StyledCardText>
               </Card.Body>
               <StyledCardImg
-                src="https://localhost:5001/images/header-wallpaper.jpeg"
+                src={`${API_URL}/images/header-wallpaper.jpeg`}
                 className="shadow mt-4 rounded"
               />
             </StyledCard>
