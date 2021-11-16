@@ -15,6 +15,8 @@ const AdminAddPlayerForm = () => {
     position: "",
   };
 
+  const positions = ["Keeper", "Defender", "Midfielder", "Forward"];
+
   const [player, setPlayer] = useState<IPlayer>(initialState);
   const [file, setFile] = useState<File>();
   const [response, setResponse] = useState<string>("");
@@ -63,6 +65,14 @@ const AdminAddPlayerForm = () => {
     setPlayer(initialState);
   };
 
+  const handlePosition = (e: any) => {
+    if (e.target.value === "default") {
+      setPlayer({ ...player, position: "No position" });
+    } else {
+      setPlayer({ ...player, position: e.target.value });
+    }
+  };
+
   return (
     <div className="mb-2 mt-5">
       <Form>
@@ -92,11 +102,19 @@ const AdminAddPlayerForm = () => {
           />
         </Form.Group>
         <Form.Group>
-          <FormControl
+          <Form.Select onChange={handlePosition}>
+            <option value="default">-- Choose position --</option>
+            {positions.map((pos, key) => (
+              <option key={key} value={pos}>
+                {pos}
+              </option>
+            ))}
+          </Form.Select>
+          {/* <FormControl
             placeholder="Position"
             value={player.position}
             onChange={(e) => setPlayer({ ...player, position: e.target.value })}
-          />
+          /> */}
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Control
