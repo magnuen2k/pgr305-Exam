@@ -25,6 +25,14 @@ const PlayerDetails: FC = () => {
     }
   };
 
+  const getAge = (dateOfBirth: any) => {
+    return Math.abs((new Date(Date.now() - new Date(dateOfBirth).getTime())).getUTCFullYear() - 1970);
+  }
+
+  const getSimpleBirthOfDate = (dateOfBirth: any) => {
+    return new Date(dateOfBirth).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+  }
+  
   return (
     <Container className="pt-5">
       <Button variant="danger" onClick={() => navigate(-1)}>
@@ -57,7 +65,7 @@ const PlayerDetails: FC = () => {
                 <Card.Body>
                   <Card.Text>Name: {player?.name}</Card.Text>
                   <Card.Text>Club: {player?.club}</Card.Text>
-                  <Card.Text>Date of birth: {player?.dateOfBirth}</Card.Text>
+                  <Card.Text>Date of birth: {getSimpleBirthOfDate(player?.dateOfBirth)} ({getAge(player?.dateOfBirth)} years)</Card.Text>
                   <Card.Text>Nationality: {player?.nationality}</Card.Text>
                   <Card.Text>Position: {player?.position}</Card.Text>
                 </Card.Body>
