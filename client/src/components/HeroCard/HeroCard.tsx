@@ -1,45 +1,74 @@
 import React from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
-import "./HeroCard.css";
+import styled from "styled-components";
 
 const HeroCard = () => {
   return (
-    <div className="hero-bg hero-bg-color">
-      <img
-        className="hero-img"
+    <StyledHeroBg>
+      <StyledHeroImg
         src="https://localhost:5001/images/header-wallpaper-full.png"
         alt="wallpaper hero"
       />
       <Container>
         <Row className="pt-3 pb-5">
-          <Col style={{ overflow: "hidden", textAlign: "center" }}>
-            <Card
-              className="border-0 text-white"
-              style={{ backgroundColor: "transparent" }}
-            >
+          <StyledCol>
+            <StyledCard className="border-0 text-white">
               <Card.Body>
-                <Card.Title style={{ fontSize: "48px", fontWeight: "bold" }}>
-                  LFC-DB
-                </Card.Title>
-                <Card.Text
-                  className="mt-3"
-                  style={{ width: "70%", margin: "0 auto" }}
-                >
+                <StyledCardTitle>LFC-DB</StyledCardTitle>
+                <StyledCardText className="mt-3">
                   Welcome to LFC-DB. Here you can see all players, staff and
                   trophies.
-                </Card.Text>
+                </StyledCardText>
               </Card.Body>
-              <Card.Img
+              <StyledCardImg
                 src="https://localhost:5001/images/header-wallpaper.jpeg"
-                style={{ overflow: "hidden", width: "55%", margin: "0 auto" }}
                 className="shadow mt-4 rounded"
               />
-            </Card>
-          </Col>
+            </StyledCard>
+          </StyledCol>
         </Row>
       </Container>
-    </div>
+    </StyledHeroBg>
   );
 };
+
+const StyledHeroBg = styled.div`
+  overflow: hidden;
+  height: 32rem;
+  position: relative;
+  background-color: transparent;
+`;
+
+const StyledHeroImg = styled.img`
+  position: absolute;
+  @media (min-width: 1460px) {
+    width: 100%;
+  }
+`;
+
+const StyledCol = styled(Col)`
+  overflow: hidden;
+  text-align: center;
+`;
+
+const StyledCard = styled(Card)`
+  background-color: transparent;
+`;
+
+const StyledCardTitle = styled(Card.Title)`
+  font-size: 48px;
+  font-weight: bold;
+`;
+
+const StyledCardText = styled(Card.Text)`
+  width: 70%;
+  margin: 0 auto;
+`;
+
+const StyledCardImg = styled(Card.Img)`
+  overflow: hidden;
+  width: 55%;
+  margin: 0 auto;
+`;
 
 export default HeroCard;
