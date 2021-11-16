@@ -1,6 +1,7 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { PlayerContext } from "../contexts/PlayerContext";
 import { IPlayer } from "../interfaces/IPlayer";
 import { PlayerContextType } from "../types/PlayerContextType";
@@ -10,6 +11,8 @@ const PlayerDetails: FC = () => {
 
   const { getPlayerById } = useContext(PlayerContext) as PlayerContextType;
   const [player, SetPlayer] = useState<IPlayer>();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     getPlayerFromContext();
@@ -23,7 +26,10 @@ const PlayerDetails: FC = () => {
   };
 
   return (
-    <Container>
+    <Container className="pt-5">
+      <Button variant="danger" onClick={() => navigate(-1)}>
+        Go back
+      </Button>
       <Card className="mt-5">
         <Card.Header>
           <Card.Title>{player?.name}</Card.Title>
