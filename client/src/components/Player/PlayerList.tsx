@@ -58,7 +58,8 @@ const PlayerList: FC = () => {
   }, [searchText]);
 
   return (
-    <Container>
+    <Container className="pt-5" id="players">
+      <h3 className="mb-3">Search our player database</h3>
       {/* <InputGroup>
         <FormControl
           placeholder="Search by player name"
