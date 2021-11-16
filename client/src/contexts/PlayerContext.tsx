@@ -22,7 +22,7 @@ export const PlayerProvider: FC = ({ children }) => {
   };
 
   const addPlayer = async (player: IPlayer) => {
-    return PlayerService.addPlayer(player);
+    return await PlayerService.addPlayer(player);
   };
 
   return (

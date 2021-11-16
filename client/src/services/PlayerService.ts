@@ -11,7 +11,7 @@ export const PlayerService = (function () {
 
   const addPlayer = async (player: IPlayer) => {
     const res = await axios.post(baseUrl, player);
-    return res.data.status;
+    return res;
   };
 
   return {

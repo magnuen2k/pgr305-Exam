@@ -17,37 +17,47 @@ const AdminAddPlayerForm = () => {
 
   const [player, setPlayer] = useState<IPlayer>(initialState);
   const [file, setFile] = useState<File>();
+  const [response, setResponse] = useState<string>("");
   const { addPlayer } = useContext(PlayerContext) as PlayerContextType;
 
   const addNewPlayer = async () => {
     // Upload image to server, if successful, add player to database
-    let data = new FormData();
 
     if (file) {
+      let data = new FormData();
       data.append("file", file);
+      let res;
+
+      try {
+        res = await axios({
+          method: "POST",
+          url: "https://localhost:5001/ImageUpload/SaveImage",
+          data: data,
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      } catch (e) {
+        console.log(e);
+      }
+
+      if (res?.status === 201) {
+        // Add player to database
+        let playerRes;
+
+        try {
+          playerRes = addPlayer(player);
+        } catch (e) {
+          console.log(e);
+        }
+
+        console.log(playerRes);
+
+        /* if (playerRes.status === 200) {
+          setResponse("Success");
+        } */
+      }
     }
-
-    let res;
-
-    try {
-      res = await axios({
-        method: "POST",
-        url: "https://localhost:5001/ImageUpload/SaveImage",
-        data: data,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-    } catch (e) {
-      console.log(e);
-    }
-
-    if (res?.status === 201) {
-      // Add player to database
-      addPlayer(player);
-    }
-
-    console.log(player);
 
     // Clear input form
     setPlayer(initialState);
@@ -89,7 +99,6 @@ const AdminAddPlayerForm = () => {
           />
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
-          <Form.Label>Upload an image</Form.Label>
           <Form.Control
             type="file"
             onChange={(e: any) => {
@@ -97,8 +106,11 @@ const AdminAddPlayerForm = () => {
               setFile(e.target.files[0]);
             }}
           />
+          {file ? "" : "You need to select a file to upload"}
         </Form.Group>
-        <Button onClick={addNewPlayer}>Add player</Button>
+        <Button onClick={addNewPlayer} disabled={file ? false : true}>
+          Add player
+        </Button>
       </Form>
     </div>
   );
