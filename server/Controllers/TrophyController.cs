@@ -31,9 +31,16 @@ namespace server.Controllers
         }
 
         [HttpPost]
-        public Trophy PostTrophy(Trophy newTrophy)
+        public IActionResult PostTrophy(Trophy newTrophy)
         {
-            return _trophyService.PostTrophy(newTrophy);
+            var trophy = _trophyService.PostTrophy(newTrophy);
+
+            if (trophy == null)
+            {
+                return NotFound();
+            }
+
+            return Created($"/api/trophy/{trophy.Id}", trophy);
         }
 
         [HttpPut]

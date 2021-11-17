@@ -31,9 +31,16 @@ namespace server.Controllers
         }
 
         [HttpPost]
-        public Staff PostStaff(Staff newStaff)
+        public IActionResult PostStaff(Staff newStaff)
         {
-            return _staffService.PostStaff(newStaff);
+            var staff = _staffService.PostStaff(newStaff);
+
+            if (staff == null)
+            {
+                return NotFound();
+            }
+
+            return Created($"/api/staff/{staff.Id}", staff);
         }
 
         [HttpPut]
