@@ -4,7 +4,7 @@ import TrophyList from "../components/Trophy/TrophyList";
 const Trophies = () => {
   return (
     <>
-      <p>Trophies</p>
+      <p>Trophy cabinet</p>
       <TrophyList />
     </>
   );
