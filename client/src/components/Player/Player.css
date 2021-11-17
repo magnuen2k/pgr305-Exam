@@ -1,32 +1,32 @@
-.card-container {
+/* .card-container {
   transition: 0.1s ease;
   cursor: pointer;
 }
 
 .card-container:hover {
   transform: scale(1.01);
-}
+} */
 
-.card-image-container {
+/* .card-image-container {
   height: 20rem;
   overflow: hidden;
   transition: 0.1s ease;
 }
-
-.player-card {
+ */
+/* .player-card {
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
   background-position: center;
   overflow: hidden;
   position: relative;
   margin: 10px auto;
   cursor: pointer;
-}
+} */
 
-.player-card .card-image-container {
+/* .card-image-container {
   transition: all linear 0.25s;
-}
+} */
 
-.player-card-name {
+/* .player-card-name {
   position: absolute;
   left: 10px;
   bottom: 20px;
@@ -44,12 +44,12 @@
   color: #fff;
   font-size: 13px;
   transition: all linear 0.25s;
-}
+} */
 
-.player-card:hover .card-image-container {
+/* .player-card:hover .card-image-container {
   filter: grayscale(100%);
 }
 
 .player-card:hover .player-card-name {
   bottom: 25px;
-}
+} */
