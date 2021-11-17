@@ -10,8 +10,10 @@ const FilterOptions: FC<IFilterOptionsProps> = ({ handleChange, options }) => {
   return (
     <Form.Select onChange={handleChange}>
       <option>-- Show All --</option>
-      {options.map((o) => (
-        <option value={o}>{o}</option>
+      {options.map((o, key) => (
+        <option key={key} value={o}>
+          {o}
+        </option>
       ))}
     </Form.Select>
   );
