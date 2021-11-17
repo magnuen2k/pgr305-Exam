@@ -40,6 +40,9 @@ const MainNavigation: FC = () => {
             <Nav.Link as={Link} to="/staff">
               Staff
             </Nav.Link>
+            <Nav.Link as={Link} to="/trophies">
+              Cabinet
+            </Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link as={Link} to="/admin">
