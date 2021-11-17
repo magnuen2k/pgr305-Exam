@@ -11,18 +11,21 @@ export const PlayerService = (function () {
   };
 
   const addPlayer = async (player: IPlayer) => {
-    const res = await axios.post(baseUrl, player);
-    return res;
+    return await axios.post(baseUrl, player);
   };
 
   const editPlayer = async (player: IPlayer) => {
-    const res = await axios.put(baseUrl, player);
-    return res;
+    return await axios.put(baseUrl, player);
+  };
+
+  const deletePlayer = async (id: string) => {
+    return await axios.delete(`${baseUrl}/${id}`);
   };
 
   return {
     getPlayers,
     addPlayer,
     editPlayer,
+    deletePlayer,
   };
 })();

@@ -1,8 +1,10 @@
-import React, { FC } from "react";
-import { Button, Card } from "react-bootstrap";
+import React, { FC, useContext, useState } from "react";
+import { Button, Card, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
+import { PlayerContextType } from "../../types/PlayerContextType";
 import { API_URL } from "../../utils/Constants";
 
 const AdminPlayerItem: FC<IPlayer> = ({
@@ -14,9 +16,28 @@ const AdminPlayerItem: FC<IPlayer> = ({
   dateOfBirth,
   position,
 }) => {
-  const deletePlayer = () => {
+  const { deletePlayer } = useContext(PlayerContext) as PlayerContextType;
+
+  const [isPopup, setIsPopup] = useState<boolean>(false);
+
+  const deletePlayerById = async () => {
     console.log("DELETED: " + id);
+
+    let res;
+
+    if (id) {
+      try {
+        res = await deletePlayer(id);
+      } catch (e) {
+        console.log(e);
+      }
+
+      console.log(res);
+    }
   };
+
+  const handleClose = () => setIsPopup(false);
+  const handleShow = () => setIsPopup(true);
 
   return (
     <Card>
@@ -34,9 +55,38 @@ const AdminPlayerItem: FC<IPlayer> = ({
           <Button className="mx-3 mb-3">Edit</Button>
         </Link>
 
-        <Button onClick={deletePlayer} className="mx-3 mb-3" variant="danger">
+        <Button onClick={handleShow} className="mx-3 mb-3" variant="danger">
           Delete
         </Button>
+
+        <Modal
+          show={isPopup}
+          onHide={handleClose}
+          style={{ "margin-top": "30vh" }}
+        >
+          <Modal.Header closeButton onClick={handleClose}>
+            <Modal.Title>Delete</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <p>Do you really want to delete {name} ?</p>
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              NO
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => {
+                deletePlayerById();
+                handleClose();
+              }}
+            >
+              YES
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </Card>
   );

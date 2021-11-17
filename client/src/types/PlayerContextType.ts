@@ -6,4 +6,5 @@ export type PlayerContextType = {
   getPlayerById: (id: string) => IPlayer;
   addPlayer: (player: IPlayer) => Promise<AxiosResponse<any, any>>;
   editPlayer: (player: IPlayer) => Promise<AxiosResponse<any, any>>;
+  deletePlayer: (id: string) => Promise<AxiosResponse<any, any>>;
 };

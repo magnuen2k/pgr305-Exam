@@ -29,9 +29,20 @@ export const PlayerProvider: FC = ({ children }) => {
     return await PlayerService.editPlayer(player);
   };
 
+  const deletePlayer = async (id: string) => {
+    let res = await PlayerService.deletePlayer(id);
+
+    // Delete from context state aswell to avoid reload
+    if (res.status === 204) {
+      setPlayers(players.filter((p) => p.id !== id));
+    }
+
+    return res;
+  };
+
   return (
     <PlayerContext.Provider
-      value={{ players, getPlayerById, addPlayer, editPlayer }}
+      value={{ players, getPlayerById, addPlayer, editPlayer, deletePlayer }}
     >
       {children}
     </PlayerContext.Provider>
