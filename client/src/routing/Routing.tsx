@@ -9,6 +9,8 @@ import {
   AdminAddPlayer,
   AdminAddStaff,
   NotFound,
+  AdminPlayers,
+  AdminEditPlayer,
 } from "../pages";
 import PlayerDetails from "../pages/PlayerDetails";
 
@@ -26,6 +28,8 @@ const Routing = () => {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/addPlayer" element={<AdminAddPlayer />} />
         <Route path="/admin/addStaff" element={<AdminAddStaff />} />
+        <Route path="/admin/players" element={<AdminPlayers />} />
+        <Route path="/admin/players/edit/:id" element={<AdminEditPlayer />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
