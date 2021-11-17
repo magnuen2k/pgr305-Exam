@@ -25,8 +25,14 @@ export const PlayerProvider: FC = ({ children }) => {
     return await PlayerService.addPlayer(player);
   };
 
+  const editPlayer = async (player: IPlayer) => {
+    return await PlayerService.editPlayer(player);
+  };
+
   return (
-    <PlayerContext.Provider value={{ players, getPlayerById, addPlayer }}>
+    <PlayerContext.Provider
+      value={{ players, getPlayerById, addPlayer, editPlayer }}
+    >
       {children}
     </PlayerContext.Provider>
   );

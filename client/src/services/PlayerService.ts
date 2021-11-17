@@ -15,8 +15,14 @@ export const PlayerService = (function () {
     return res;
   };
 
+  const editPlayer = async (player: IPlayer) => {
+    const res = await axios.put(baseUrl, player);
+    return res;
+  };
+
   return {
     getPlayers,
     addPlayer,
+    editPlayer,
   };
 })();
