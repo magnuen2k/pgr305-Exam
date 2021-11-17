@@ -55,7 +55,7 @@ const AdminAddPlayerForm = () => {
 
         console.log(playerRes);
 
-        if (playerRes && playerRes.status === 200) {
+        if (playerRes && playerRes.status === 201) {
           setResponse("Success");
         }
       }

@@ -5,6 +5,7 @@ import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
 import { PLAYER_POSITIONS } from "../../utils/Constants";
 import FilterOptions from "../FilterOptions";
+import Loading from "../shared/Loading";
 import PlayerItem from "./PlayerItem";
 
 const PlayerList: FC = () => {
@@ -57,6 +58,10 @@ const PlayerList: FC = () => {
       setAllPlayers(filteredPlayers);
     }
   }, [searchText]);
+
+  if (players.length <= 0) {
+    return <Loading />;
+  }
 
   return (
     <Container className="pt-5" id="players">

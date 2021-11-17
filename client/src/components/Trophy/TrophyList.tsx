@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { TrophyContext } from "../../contexts/TrophyContext";
 import { ITrophy } from "../../interfaces/ITrophy";
 import { TrophyContextType } from "../../types/TrophyContextType";
+import Loading from "../shared/Loading";
 import TrophyItem from "./TrophyItem";
 
 const TrophyList: FC = () => {
@@ -22,6 +23,10 @@ const TrophyList: FC = () => {
       );
     });
   };
+
+  if (trophies.length <= 0) {
+    return <Loading />;
+  }
 
   return (
     <Container className="pt-5">

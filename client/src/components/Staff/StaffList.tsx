@@ -3,6 +3,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import { StaffContext } from "../../contexts/StaffContext";
 import { IStaff } from "../../interfaces/IStaff";
 import { StaffContextType } from "../../types/StaffContextType";
+import Loading from "../shared/Loading";
 import StaffItem from "./StaffItem";
 
 const StaffList: FC = () => {
@@ -25,6 +26,10 @@ const StaffList: FC = () => {
       );
     });
   };
+
+  if (staff.length <= 0) {
+    return <Loading />;
+  }
 
   return (
     <Container className="pt-5">
