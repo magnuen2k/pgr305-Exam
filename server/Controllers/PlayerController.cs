@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using server.Models;
 using server.Services;
@@ -30,9 +31,16 @@ namespace server.Controllers
         }
 
         [HttpPost]
-        public Player PostPlayer(Player newPlayer)
+        public IActionResult PostPlayer(Player newPlayer)
         {
-            return _playerService.PostPlayer(newPlayer);
+            var player = _playerService.PostPlayer(newPlayer);
+
+            if (player == null)
+            {
+                return NotFound();
+            }
+            
+            return Created($"/api/player/{player.Id}", player);
         }
 
         [HttpPut]
