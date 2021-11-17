@@ -4,6 +4,7 @@ import {
   Players,
   Home,
   Staff,
+  Trophies,
   AdminDashboard,
   AdminAddPlayer,
   AdminAddStaff,
@@ -21,6 +22,7 @@ const Routing = () => {
         <Route path="players" element={<Players />} />
         <Route path="/player-details/:id" element={<PlayerDetails />} />
         <Route path="/staff" element={<Staff />} />
+        <Route path="/trophies" element={<Trophies />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/addPlayer" element={<AdminAddPlayer />} />
         <Route path="/admin/addStaff" element={<AdminAddStaff />} />

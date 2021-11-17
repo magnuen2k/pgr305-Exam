@@ -5,11 +5,13 @@ import AdminDashboard from "./AdminDashboard";
 import AdminAddPlayer from "./AdminAddPlayer";
 import AdminAddStaff from "./AdminAddStaff";
 import NotFound from "./NotFound";
+import Trophies from "./Trophies";
 
 export {
   Players,
   Home,
   Staff,
+  Trophies,
   AdminDashboard,
   AdminAddPlayer,
   AdminAddStaff,

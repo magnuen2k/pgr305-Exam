@@ -1,8 +1,9 @@
 import axios from "axios";
 import { IPlayer } from "../interfaces/IPlayer";
+import { API_URL } from "../utils/Constants";
 
 export const PlayerService = (function () {
-  const baseUrl = "https://localhost:5001/api/player";
+  const baseUrl = `${API_URL}/api/player`;
 
   const getPlayers = async () => {
     const res = await axios.get(baseUrl);
