@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import AdminEditPlayerForm from "../components/Admin/AdminEditPlayerForm";
 import { PlayerContext } from "../contexts/PlayerContext";
@@ -23,7 +24,9 @@ const AdminEditPlayer = () => {
   };
 
   return player ? (
-    <AdminEditPlayerForm player={player} />
+    <Container>
+      <AdminEditPlayerForm player={player} />
+    </Container>
   ) : (
     <div>Unable to edit player</div>
   );
