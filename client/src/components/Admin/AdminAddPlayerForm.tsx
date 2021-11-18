@@ -27,6 +27,7 @@ const AdminAddPlayerForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleError = (e: any) => {
+    setIsLoading(false);
     if (e.response) {
       setResponse({
         message: e.message,
