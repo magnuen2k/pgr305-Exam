@@ -21,8 +21,8 @@ const TrophyItem: FC<ITrophy> = ({ id, image, tournamentName, yearsWon }) => {
             <Accordion.Header>See years won</Accordion.Header>
             <Accordion.Body>
               {yearsWon.map((y, key) => {
-                if (key === 0) return <>{y}</>;
-                return <>, {y}</>;
+                if (key === 0) return <span key={key}>{y}</span>;
+                return <span key={key}>, {y}</span>;
               })}
             </Accordion.Body>
           </Accordion.Item>

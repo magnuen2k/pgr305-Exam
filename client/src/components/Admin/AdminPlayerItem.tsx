@@ -50,7 +50,7 @@ const AdminPlayerItem: FC<IPlayer> = ({
           />
         </StyledCardImgContainer>
       </Card.Body>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <StyledButtonContainer>
         <Link to={`/admin/players/edit/${id}`}>
           <Button className="mx-3 mb-3">Edit</Button>
         </Link>
@@ -59,11 +59,7 @@ const AdminPlayerItem: FC<IPlayer> = ({
           Delete
         </Button>
 
-        <Modal
-          show={isPopup}
-          onHide={handleClose}
-          style={{ "margin-top": "30vh" }}
-        >
+        <StyledModal show={isPopup} onHide={handleClose}>
           <Modal.Header closeButton onClick={handleClose}>
             <Modal.Title>Delete</Modal.Title>
           </Modal.Header>
@@ -86,8 +82,8 @@ const AdminPlayerItem: FC<IPlayer> = ({
               YES
             </Button>
           </Modal.Footer>
-        </Modal>
-      </div>
+        </StyledModal>
+      </StyledButtonContainer>
     </Card>
   );
 };
@@ -95,6 +91,15 @@ const AdminPlayerItem: FC<IPlayer> = ({
 const StyledCardImgContainer = styled.div`
   height: 12rem;
   overflow: hidden;
+`;
+
+const StyledButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledModal = styled(Modal)`
+  margin-top: 30vh;
 `;
 
 export default AdminPlayerItem;
