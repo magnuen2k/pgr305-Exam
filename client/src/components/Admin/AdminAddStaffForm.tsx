@@ -9,6 +9,7 @@ import FilterOptions from "../shared/FilterOptions";
 import { IResponse } from "../../interfaces/IResponse";
 import Loading from "../shared/Loading";
 import ResponseView from "../shared/ResponseView";
+import { handleError, handleImageUpload } from "../../utils";
 
 const AdminAddStaffForm = () => {
   const initialState = {
@@ -26,65 +27,29 @@ const AdminAddStaffForm = () => {
   const { addStaff } = useContext(StaffContext) as StaffContextType;
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleError = (e: any) => {
-    setIsLoading(false);
-    if (e.response) {
-      setResponse({
-        message: e.message,
-        statusCode: e.response.status,
-      });
-    } else {
-      setResponse({
-        message: "Network error",
-        statusCode: 0,
-      });
-    }
-  };
-
-  const handleImageUpload = async () => {
-    if (file) {
-      let data = new FormData();
-      data.append("file", file);
-      let res;
-
-      try {
-        setIsLoading(true);
-        res = await axios({
-          method: "POST",
-          url: `${API_URL}/ImageUpload/SaveImage`,
-          data: data,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-      } catch (e: any) {
-        handleError(e);
-      }
-
-      return res?.status;
-    }
-    return 0;
-  };
-
   const addNewStaff = async () => {
     // Upload image to server, if successful, add player to database
+    if (file) {
+      if ((await handleImageUpload(file, setIsLoading, setResponse)) === 201) {
+        // Add staff to database
+        let staffRes;
 
-    if ((await handleImageUpload()) === 201) {
-      let staffRes;
+        // Try to POST new staff, else handle error
+        try {
+          staffRes = await addStaff(staff);
+          setIsLoading(true);
+        } catch (e: any) {
+          handleError(e, setIsLoading, setResponse);
+        }
 
-      try {
-        setIsLoading(true);
-        staffRes = await addStaff(staff);
-      } catch (e: any) {
-        handleError(e);
-      }
-
-      if (staffRes && staffRes.status === 201) {
-        setIsLoading(false);
-        setResponse({
-          message: "Staff added successfully",
-          statusCode: staffRes.status,
-        });
+        // If POST successful, display message in popup
+        if (staffRes && staffRes.status === 201) {
+          setIsLoading(false);
+          setResponse({
+            message: "Staff added successfully",
+            statusCode: staffRes.status,
+          });
+        }
       }
     }
 
