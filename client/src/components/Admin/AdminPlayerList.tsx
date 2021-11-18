@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
+import Loading from "../shared/Loading";
 import AdminPlayerItem from "./AdminPlayerItem";
 
 const AdminPlayerList = () => {
@@ -29,8 +30,7 @@ const AdminPlayerList = () => {
   return (
     <Container className="pt-5" id="players">
       <h3 className="mb-3">Manage players</h3>
-
-      <Row>{createPlayerList()}</Row>
+      {players.length <= 0 ? <Loading /> : <Row>{createPlayerList()}</Row>}
     </Container>
   );
 };

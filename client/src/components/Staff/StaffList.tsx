@@ -27,14 +27,10 @@ const StaffList: FC = () => {
     });
   };
 
-  if (staff.length <= 0) {
-    return <Loading />;
-  }
-
   return (
     <Container className="pt-5">
       <h3 className="mb-3">Our staff</h3>
-      <Row>{createStaffList()}</Row>
+      {staff.length <= 0 ? <Loading /> : <Row>{createStaffList()}</Row>}
     </Container>
   );
 };

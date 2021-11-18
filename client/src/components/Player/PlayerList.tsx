@@ -59,13 +59,9 @@ const PlayerList: FC = () => {
     }
   }, [searchText]);
 
-  if (players.length <= 0) {
-    return <Loading />;
-  }
-
   return (
     <Container className="pt-5" id="players">
-      <h3 className="mb-3">Search our player database</h3>
+      <h3 className="mb-3">Players</h3>
       {/* <InputGroup>
         <FormControl
           placeholder="Search by player name"
@@ -74,11 +70,17 @@ const PlayerList: FC = () => {
         />
       </InputGroup> */}
 
-      <FilterOptions
-        handleChange={(e: any) => setFilterText(e.target.value)}
-        options={PLAYER_POSITIONS}
-      />
-      <Row>{createPlayerList()}</Row>
+      {players.length <= 0 ? (
+        <Loading />
+      ) : (
+        <>
+          <FilterOptions
+            handleChange={(e: any) => setFilterText(e.target.value)}
+            options={PLAYER_POSITIONS}
+          />
+          <Row>{createPlayerList()}</Row>
+        </>
+      )}
     </Container>
   );
 };

@@ -24,14 +24,10 @@ const TrophyList: FC = () => {
     });
   };
 
-  if (trophies.length <= 0) {
-    return <Loading />;
-  }
-
   return (
     <Container className="pt-5">
       <h3 className="mb-3">Our trophies</h3>
-      <Row>{createTrophyList()}</Row>
+      {trophies.length <= 0 ? <Loading /> : <Row>{createTrophyList()}</Row>}
     </Container>
   );
 };
