@@ -11,8 +11,7 @@ export const StaffService = (function () {
   };
 
   const addStaff = async (staff: IStaff) => {
-    const res = await axios.post(baseUrl, staff);
-    return res;
+    return await axios.post(baseUrl, staff);
   };
 
   return {

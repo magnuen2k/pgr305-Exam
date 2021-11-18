@@ -45,12 +45,18 @@ const AdminAddStaffForm = () => {
         let staffRes;
 
         try {
-          staffRes = addStaff(staff);
-        } catch (e) {
-          console.log(e);
+          staffRes = await addStaff(staff);
+        } catch (e: any) {
+          if (e.response.status === 404) {
+            setResponse("Error component 404"); // TODO: error component
+          } else if (e.response.status === 500) {
+            setResponse("Error component 500"); // TODO: error component
+          }
         }
 
-        console.log(staffRes);
+        if (staffRes && staffRes.status === 201) {
+          setResponse("Player added successfully");
+        }
       }
     }
 
@@ -106,10 +112,11 @@ const AdminAddStaffForm = () => {
           />
           {file ? "" : "You need to select a file to upload"}
         </Form.Group>
-        <Button onClick={addNewStaff} disabled={file ? false : true}>
+        <Button onClick={addNewStaff} disabled={!file}>
           Add staff
         </Button>
       </Form>
+      <p>{response}</p>
     </div>
   );
 };

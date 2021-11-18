@@ -49,14 +49,16 @@ const AdminAddPlayerForm = () => {
 
         try {
           playerRes = await addPlayer(player);
-        } catch (e) {
-          console.log(e);
+        } catch (e: any) {
+          if (e.response.status === 404) {
+            setResponse("Error component 404"); // TODO: error component
+          } else if (e.response.status === 500) {
+            setResponse("Error component 500"); // TODO: error component
+          }
         }
 
-        console.log(playerRes);
-
         if (playerRes && playerRes.status === 201) {
-          setResponse("Success");
+          setResponse("Player added successfully");
         }
       }
     }
