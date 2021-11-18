@@ -4,9 +4,13 @@ import { Button, Form, FormControl } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
+import { IResponse } from "../../interfaces/IResponse";
 import { PlayerContextType } from "../../types/PlayerContextType";
+import { handleError, handleImageUpload } from "../../utils";
 import { API_URL, PLAYER_POSITIONS } from "../../utils/Constants";
 import FilterOptions from "../shared/FilterOptions";
+import Loading from "../shared/Loading";
+import ResponseView from "../shared/ResponseView";
 
 interface AdminEditPlayerFormProps {
   player: IPlayer;
@@ -15,50 +19,42 @@ interface AdminEditPlayerFormProps {
 const AdminEditPlayerForm: FC<AdminEditPlayerFormProps> = ({ player }) => {
   const { editPlayer } = useContext(PlayerContext) as PlayerContextType;
 
-  const [editedPlayer, setEditedPlayer] = useState(player);
+  const [editedPlayer, setEditedPlayer] = useState<IPlayer>(player);
   const [newImage, setNewImage] = useState<File>();
-  const [response, setReponse] = useState<string>("");
+  const [response, setResponse] = useState<IResponse>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handlePosition = (e: any) => {
     setEditedPlayer({ ...editedPlayer, position: e.target.value });
   };
 
+  // Upload image to server, if successful, add edited player to database
   const editNewPlayer = async () => {
-    console.log(editedPlayer);
-
+    let imgRes;
     if (newImage) {
-      let data = new FormData();
-      data.append("file", newImage);
-
-      let imgRes;
-
-      try {
-        imgRes = await axios({
-          method: "POST",
-          url: `${API_URL}/ImageUpload/SaveImage`,
-          data: data,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-      } catch (e) {
-        console.log(e);
-      }
+      imgRes = await handleImageUpload(newImage, setIsLoading, setResponse);
     }
 
     let playerRes;
 
+    // Try to POST edited player, else handle error
     try {
       playerRes = await editPlayer(editedPlayer);
-    } catch (e) {
-      console.log(e);
+      setIsLoading(true);
+    } catch (e: any) {
+      handleError(e, setIsLoading, setResponse);
     }
 
+    // If POST successful, display message in popup
     if (playerRes && playerRes.status === 204) {
-      setReponse("Edited player successfully");
+      setIsLoading(false);
+      setResponse({
+        message: `Player edited successfully${
+          imgRes === 201 ? ", with new image" : ", without new image"
+        }`,
+        statusCode: playerRes.status,
+      });
     }
-
-    console.log(playerRes);
   };
 
   return (
@@ -113,7 +109,13 @@ const AdminEditPlayerForm: FC<AdminEditPlayerFormProps> = ({ player }) => {
         </Form.Group>
         <Button onClick={editNewPlayer}>Edit player</Button>
       </Form>
-      <p>{response}</p>
+      {isLoading && <Loading />}
+      {response && (
+        <ResponseView
+          message={response.message}
+          statusCode={response.statusCode}
+        />
+      )}
     </div>
   );
 };
