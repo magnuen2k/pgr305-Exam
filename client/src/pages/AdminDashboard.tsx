@@ -1,34 +1,58 @@
 import React from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <h3 className="mt-5">Admin dashboard</h3>
       <Row md={1} lg={2} xs={1}>
-        <Col style={{ display: "flex", justifyContent: "center" }}>
-          <Card className="mt-4" style={{ width: "90%" }}>
+        <StyledCol>
+          <StyledCard className="mt-4">
             <Card.Header>Players</Card.Header>
-            <Button variant="danger" className="m-3">
-              <Link to="/admin/addPlayer">Add a player</Link>
+            <Button
+              variant="danger"
+              className="m-3"
+              onClick={() => navigate("/admin/addPlayer")}
+            >
+              Add a player
             </Button>
-            <Button variant="danger" className="m-3">
-              <Link to="/admin/players">Manage players</Link>
+            <Button
+              variant="danger"
+              className="m-3"
+              onClick={() => navigate("/admin/players")}
+            >
+              Manage players
             </Button>
-          </Card>
-        </Col>
-        <Col style={{ display: "flex", justifyContent: "center" }}>
-          <Card className="mt-4" style={{ width: "90%" }}>
+          </StyledCard>
+        </StyledCol>
+        <StyledCol>
+          <StyledCard className="mt-4">
             <Card.Header>Staff</Card.Header>
-            <Button variant="danger" className="m-3">
-              <Link to="/admin/addStaff">Add staff</Link>
+            <Button
+              variant="danger"
+              className="m-3"
+              onClick={() => navigate("/admin/addStaff")}
+            >
+              Add staff
             </Button>
-          </Card>
-        </Col>
+          </StyledCard>
+        </StyledCol>
       </Row>
     </Container>
   );
 };
+
+const StyledCol = styled(Col)`
+  display: flex;
+  justify-content: center;
+`;
+
+const StyledCard = styled(Card)`
+  width: 90%;
+`;
 
 export default AdminDashboard;
