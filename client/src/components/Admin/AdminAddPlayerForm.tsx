@@ -5,7 +5,7 @@ import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
 import { API_URL, PLAYER_POSITIONS } from "../../utils/Constants";
-import FilterOptions from "../FilterOptions";
+import FilterOptions from "../shared/FilterOptions";
 
 const AdminAddPlayerForm = () => {
   const initialState = {

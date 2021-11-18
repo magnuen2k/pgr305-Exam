@@ -4,7 +4,7 @@ import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
 import { PLAYER_POSITIONS } from "../../utils/Constants";
-import FilterOptions from "../FilterOptions";
+import FilterOptions from "../shared/FilterOptions";
 import Loading from "../shared/Loading";
 import PlayerItem from "./PlayerItem";
 

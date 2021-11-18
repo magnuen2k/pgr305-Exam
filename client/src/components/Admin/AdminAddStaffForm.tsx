@@ -5,7 +5,7 @@ import { StaffContext } from "../../contexts/StaffContext";
 import { IStaff } from "../../interfaces/IStaff";
 import { StaffContextType } from "../../types/StaffContextType";
 import { API_URL, STAFF_ROLES } from "../../utils/Constants";
-import FilterOptions from "../FilterOptions";
+import FilterOptions from "../shared/FilterOptions";
 
 const AdminAddStaffForm = () => {
   const initialState = {
