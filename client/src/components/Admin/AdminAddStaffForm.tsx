@@ -6,6 +6,9 @@ import { IStaff } from "../../interfaces/IStaff";
 import { StaffContextType } from "../../types/StaffContextType";
 import { API_URL, STAFF_ROLES } from "../../utils/Constants";
 import FilterOptions from "../shared/FilterOptions";
+import { IResponse } from "../../interfaces/IResponse";
+import Loading from "../shared/Loading";
+import ResponseView from "../shared/ResponseView";
 
 const AdminAddStaffForm = () => {
   const initialState = {
@@ -19,16 +22,32 @@ const AdminAddStaffForm = () => {
 
   const [staff, setStaff] = useState<IStaff>(initialState);
   const [file, setFile] = useState<File>();
-  const [response, setResponse] = useState<string>("");
+  const [response, setResponse] = useState<IResponse>();
   const { addStaff } = useContext(StaffContext) as StaffContextType;
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const addNewStaff = async () => {
+  const handleError = (e: any) => {
+    if (e.response) {
+      setResponse({
+        message: e.message,
+        statusCode: e.response.status,
+      });
+    } else {
+      setResponse({
+        message: "Network error",
+        statusCode: 0,
+      });
+    }
+  };
+
+  const handleImageUpload = async () => {
     if (file) {
       let data = new FormData();
       data.append("file", file);
       let res;
 
       try {
+        setIsLoading(true);
         res = await axios({
           method: "POST",
           url: `${API_URL}/ImageUpload/SaveImage`,
@@ -37,29 +56,38 @@ const AdminAddStaffForm = () => {
             "Content-Type": "multipart/form-data",
           },
         });
-      } catch (e) {
-        console.log(e);
+      } catch (e: any) {
+        handleError(e);
       }
 
-      if (res?.status === 201) {
-        let staffRes;
+      return res?.status;
+    }
+    return 0;
+  };
 
-        try {
-          staffRes = await addStaff(staff);
-        } catch (e: any) {
-          if (e.response.status === 404) {
-            setResponse("Error component 404"); // TODO: error component
-          } else if (e.response.status === 500) {
-            setResponse("Error component 500"); // TODO: error component
-          }
-        }
+  const addNewStaff = async () => {
+    // Upload image to server, if successful, add player to database
 
-        if (staffRes && staffRes.status === 201) {
-          setResponse("Player added successfully");
-        }
+    if ((await handleImageUpload()) === 201) {
+      let staffRes;
+
+      try {
+        setIsLoading(true);
+        staffRes = await addStaff(staff);
+      } catch (e: any) {
+        handleError(e);
+      }
+
+      if (staffRes && staffRes.status === 201) {
+        setIsLoading(false);
+        setResponse({
+          message: "Staff added successfully",
+          statusCode: staffRes.status,
+        });
       }
     }
 
+    // Clear input form
     setStaff(initialState);
   };
 
@@ -116,7 +144,13 @@ const AdminAddStaffForm = () => {
           Add staff
         </Button>
       </Form>
-      <p>{response}</p>
+      {isLoading && <Loading />}
+      {response && (
+        <ResponseView
+          message={response.message}
+          statusCode={response.statusCode}
+        />
+      )}
     </div>
   );
 };
