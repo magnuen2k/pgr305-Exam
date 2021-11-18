@@ -1,11 +1,16 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
 import { API_URL, PLAYER_POSITIONS } from "../../utils/Constants";
 import FilterOptions from "../shared/FilterOptions";
+
+interface IResponse {
+  message: string;
+  statusCode: number;
+}
 
 const AdminAddPlayerForm = () => {
   const initialState = {
@@ -19,7 +24,10 @@ const AdminAddPlayerForm = () => {
 
   const [player, setPlayer] = useState<IPlayer>(initialState);
   const [file, setFile] = useState<File>();
-  const [response, setResponse] = useState<string>("");
+  const [response, setResponse] = useState<IResponse>({
+    message: "",
+    statusCode: 0,
+  });
   const { addPlayer } = useContext(PlayerContext) as PlayerContextType;
 
   const addNewPlayer = async () => {
@@ -50,15 +58,17 @@ const AdminAddPlayerForm = () => {
         try {
           playerRes = await addPlayer(player);
         } catch (e: any) {
-          if (e.response.status === 404) {
-            setResponse("Error component 404"); // TODO: error component
-          } else if (e.response.status === 500) {
-            setResponse("Error component 500"); // TODO: error component
-          }
+          setResponse({
+            message: e.message,
+            statusCode: e.response.status,
+          }); // TODO: error component
         }
 
         if (playerRes && playerRes.status === 201) {
-          setResponse("Player added successfully");
+          setResponse({
+            message: "Player added successfully",
+            statusCode: playerRes.status,
+          });
         }
       }
     }
@@ -123,7 +133,22 @@ const AdminAddPlayerForm = () => {
           Add player
         </Button>
       </Form>
-      <p>{response}</p>
+      <p>
+        {response.statusCode > 0 && (
+          <ResponseView
+            message={response.message}
+            statusCode={response.statusCode}
+          />
+        )}
+      </p>
+    </div>
+  );
+};
+
+const ResponseView: FC<IResponse> = ({ message, statusCode }) => {
+  return (
+    <div>
+      <p>test</p>
     </div>
   );
 };
