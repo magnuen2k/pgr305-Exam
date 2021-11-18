@@ -6,6 +6,8 @@ import { IPlayer } from "../../interfaces/IPlayer";
 import { IResponse } from "../../interfaces/IResponse";
 import { PlayerContextType } from "../../types/PlayerContextType";
 import { API_URL, PLAYER_POSITIONS } from "../../utils/Constants";
+import { handleError } from "../../utils/HandleError";
+import { handleImageUpload } from "../../utils/HandleImageUpload";
 import FilterOptions from "../shared/FilterOptions";
 import Loading from "../shared/Loading";
 import ResponseView from "../shared/ResponseView";
@@ -26,66 +28,29 @@ const AdminAddPlayerForm = () => {
   const { addPlayer } = useContext(PlayerContext) as PlayerContextType;
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleError = (e: any) => {
-    setIsLoading(false);
-    if (e.response) {
-      setResponse({
-        message: e.message,
-        statusCode: e.response.status,
-      });
-    } else {
-      setResponse({
-        message: "Network error",
-        statusCode: 0,
-      });
-    }
-  };
-
-  const handleImageUpload = async () => {
-    if (file) {
-      let data = new FormData();
-      data.append("file", file);
-      let res;
-
-      try {
-        setIsLoading(true);
-        res = await axios({
-          method: "POST",
-          url: `${API_URL}/ImageUpload/SaveImage`,
-          data: data,
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-      } catch (e: any) {
-        handleError(e);
-      }
-
-      return res?.status;
-    }
-    return 0;
-  };
-
+  // Upload image to server, if successful, add player to database
   const addNewPlayer = async () => {
-    // Upload image to server, if successful, add player to database
+    if (file) {
+      if ((await handleImageUpload(file, setIsLoading, setResponse)) === 201) {
+        // Add player to database
+        let playerRes;
 
-    if ((await handleImageUpload()) === 201) {
-      // Add player to database
-      let playerRes;
+        // Try to POST new player, else handle error
+        try {
+          playerRes = await addPlayer(player);
+          setIsLoading(true);
+        } catch (e: any) {
+          handleError(e, setIsLoading, setResponse);
+        }
 
-      try {
-        setIsLoading(true);
-        playerRes = await addPlayer(player);
-      } catch (e: any) {
-        handleError(e);
-      }
-
-      if (playerRes && playerRes.status === 201) {
-        setIsLoading(false);
-        setResponse({
-          message: "Player added successfully",
-          statusCode: playerRes.status,
-        });
+        // If POST successful, display message in popup
+        if (playerRes && playerRes.status === 201) {
+          setIsLoading(false);
+          setResponse({
+            message: "Player added successfully",
+            statusCode: playerRes.status,
+          });
+        }
       }
     }
 
