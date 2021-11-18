@@ -1,9 +1,10 @@
-import React, { FC } from "react";
-import { Alert, Row } from "react-bootstrap";
+import React, { FC, useState } from "react";
+import { Alert, Modal } from "react-bootstrap";
 import styled from "styled-components";
 import { IResponse } from "../../interfaces/IResponse";
 
 const ResponseView: FC<IResponse> = ({ message, statusCode }) => {
+  const [isPopup, setIsPopup] = useState<boolean>(true);
   let responseMessage;
   let color;
 
@@ -21,20 +22,24 @@ const ResponseView: FC<IResponse> = ({ message, statusCode }) => {
     color = "warning";
   }
 
+  const handleClose = () => setIsPopup(false);
+  const handleShow = () => setIsPopup(true);
+
   return (
-    <StyledRow>
-      <Alert variant={color}>
-        <Alert.Heading>{responseMessage}</Alert.Heading>
-        <p>{message}</p>
-      </Alert>
-    </StyledRow>
+    <StyledModal show={isPopup} onHide={handleClose}>
+      <Modal.Header closeButton onClick={handleClose}></Modal.Header>
+      <Modal.Body>
+        <Alert variant={color}>
+          <Alert.Heading>{responseMessage}</Alert.Heading>
+          <p>{message}</p>
+        </Alert>
+      </Modal.Body>
+    </StyledModal>
   );
 };
 
-const StyledRow = styled(Row)`
-  padding: 1rem;
-  width: 50%;
-  margin: 0 auto;
+const StyledModal = styled(Modal)`
+  margin-top: 30vh;
 `;
 
 export default ResponseView;
