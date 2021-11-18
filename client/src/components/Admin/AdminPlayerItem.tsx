@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
+import { IResponse } from "../../interfaces/IResponse";
 import { PlayerContextType } from "../../types/PlayerContextType";
 import { API_URL } from "../../utils/Constants";
+import Loading from "../shared/Loading";
+import ResponseView from "../shared/ResponseView";
 
 const AdminPlayerItem: FC<IPlayer> = ({
   id,
@@ -19,20 +22,33 @@ const AdminPlayerItem: FC<IPlayer> = ({
   const { deletePlayer } = useContext(PlayerContext) as PlayerContextType;
 
   const [isPopup, setIsPopup] = useState<boolean>(false);
+  const [response, setResponse] = useState<IResponse>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleError = (e: any) => {
+    setIsLoading(false);
+    if (e.response) {
+      setResponse({
+        message: e.message,
+        statusCode: e.response.status,
+      });
+    } else {
+      setResponse({
+        message: "Network error",
+        statusCode: 0,
+      });
+    }
+  };
 
   const deletePlayerById = async () => {
-    console.log("DELETED: " + id);
-
     let res;
 
     if (id) {
       try {
         res = await deletePlayer(id);
-      } catch (e) {
-        console.log(e);
+      } catch (e: any) {
+        handleError(e);
       }
-
-      console.log(res);
     }
   };
 
@@ -84,6 +100,13 @@ const AdminPlayerItem: FC<IPlayer> = ({
           </Modal.Footer>
         </StyledModal>
       </StyledButtonContainer>
+      {isLoading && <Loading />}
+      {response && (
+        <ResponseView
+          message={response.message}
+          statusCode={response.statusCode}
+        />
+      )}
     </Card>
   );
 };
