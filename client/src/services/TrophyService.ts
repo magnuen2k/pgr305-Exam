@@ -11,12 +11,21 @@ export const TrophyService = (function () {
   };
 
   const addTrophies = async (trophy: ITrophy) => {
-    const res = await axios.post(baseUrl, trophy);
-    return res;
+    return await axios.post(baseUrl, trophy);
+  };
+
+  const editTrophy = async (trophy: ITrophy) => {
+    return await axios.put(baseUrl, trophy);
+  };
+
+  const deleteTrophy = async (id: string) => {
+    return await axios.delete(`${baseUrl}/${id}`);
   };
 
   return {
     getTrophies,
     addTrophies,
+    editTrophy,
+    deleteTrophy,
   };
 })();
