@@ -1,31 +1,36 @@
 # PGR305-Exam - Webutvikling 3
 
 ### Group members:
-* Exam Candidate 2061
-* Exam Candidate 2035
+* Exam candidate 2035
+* Exam candidate 2061
 
-### Noe starter info?
-???
+## Our project
+We opted for the theme `Football players / football team` and made a website for the team Liverpool FC.
 
-### Project initialization:
-hvordan vi starter ting?
+Both backend are frontend are built the way shown in class. A .NET/C# Web Api connected to MongoDB, and a frontend made in React with Typescript.
 
-Backend:
+
+## Initialization:
+In order to run this on your machine, you need both .NET and Node.js installed. 
+
+#### Backend:
+To run the backend, enter the /backend directory and enter the following command:
 - `dotnet watch run`
 
-https://localhost:5001/swagger/index.html
+Info of endpoints can be found through the Swagger interface, found on https://localhost:5001/swagger/index.html.
 
-Frontend:
+#### Frontend:
+To run the frontend, you need to first install the dependencies before you run it with the following commands below. Use either npm or yarn.
 - `npm install` / `yarn install`
 - `npm start` / `yarn start`
 
-http://localhost:3000/
+The website will then be availbile at http://localhost:3000/.
 
-### Project structure
+## Structure
 noe info om strukturen osv
 
-### Project details
+## Decisions
 Hva vi har brukt av teknikker, accordian osv
 
-### Bugs osv?
+## Bugs osv?
 issues?
