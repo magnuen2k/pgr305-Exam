@@ -25,6 +25,10 @@ export const StaffProvider: FC = ({ children }) => {
     return await StaffService.addStaff(staff);
   };
 
+  const editStaff = async (staff: IStaff) => {
+    return await StaffService.editStaff(staff);
+  };
+
   const deleteStaff = async (id: string) => {
     let res = await StaffService.deleteStaff(id);
 
@@ -38,7 +42,7 @@ export const StaffProvider: FC = ({ children }) => {
 
   return (
     <StaffContext.Provider
-      value={{ staff, getStaffById, addStaff, deleteStaff }}
+      value={{ staff, getStaffById, addStaff, deleteStaff, editStaff }}
     >
       {children}
     </StaffContext.Provider>

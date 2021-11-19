@@ -14,6 +14,10 @@ export const StaffService = (function () {
     return await axios.post(baseUrl, staff);
   };
 
+  const editStaff = async (staff: IStaff) => {
+    return await axios.put(baseUrl, staff);
+  };
+
   const deleteStaff = async (id: string) => {
     return await axios.delete(`${baseUrl}/${id}`);
   };
@@ -22,5 +26,6 @@ export const StaffService = (function () {
     getStaff,
     addStaff,
     deleteStaff,
+    editStaff,
   };
 })();

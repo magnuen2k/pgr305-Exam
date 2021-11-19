@@ -9,6 +9,7 @@ import Trophies from "./Trophies";
 import AdminPlayers from "./AdminPlayers";
 import AdminEditPlayer from "./AdminEditPlayer";
 import AdminStaff from "./AdminStaff";
+import AdminEditStaff from "./AdminEditStaff";
 
 export {
   Players,
@@ -22,4 +23,5 @@ export {
   AdminPlayers,
   AdminEditPlayer,
   AdminStaff,
+  AdminEditStaff,
 };
