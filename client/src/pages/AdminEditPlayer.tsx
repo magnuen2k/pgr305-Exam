@@ -10,7 +10,7 @@ const AdminEditPlayer = () => {
   const { id } = useParams();
 
   const { getPlayerById } = useContext(PlayerContext) as PlayerContextType;
-  const [player, SetPlayer] = useState<IPlayer>();
+  const [player, setPlayer] = useState<IPlayer>();
 
   useEffect(() => {
     getPlayerFromContext();
@@ -19,7 +19,7 @@ const AdminEditPlayer = () => {
   const getPlayerFromContext = () => {
     if (id) {
       const _player = getPlayerById(id);
-      SetPlayer(_player);
+      setPlayer(_player);
     }
   };
 
