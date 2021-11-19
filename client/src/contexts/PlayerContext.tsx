@@ -8,10 +8,6 @@ export const PlayerContext = createContext<PlayerContextType | null>(null);
 export const PlayerProvider: FC = ({ children }) => {
   const [players, setPlayers] = useState<IPlayer[]>([]);
 
-  useEffect(() => {
-    getPlayersFromService();
-  }, []);
-
   const getPlayersFromService = async () => {
     const res = await PlayerService.getPlayers();
     setPlayers(res);
@@ -28,6 +24,11 @@ export const PlayerProvider: FC = ({ children }) => {
   const editPlayer = async (player: IPlayer) => {
     return await PlayerService.editPlayer(player);
   };
+
+  // GET players when adding or updating a player
+  useEffect(() => {
+    getPlayersFromService();
+  }, [addPlayer, editPlayer]);
 
   const deletePlayer = async (id: string) => {
     let res = await PlayerService.deletePlayer(id);

@@ -8,10 +8,6 @@ export const StaffContext = createContext<StaffContextType | null>(null);
 export const StaffProvider: FC = ({ children }) => {
   const [staff, setStaff] = useState<IStaff[]>([]);
 
-  useEffect(() => {
-    getStaffFromService();
-  }, []);
-
   const getStaffFromService = async () => {
     const res = await StaffService.getStaff();
     setStaff(res);
@@ -28,6 +24,11 @@ export const StaffProvider: FC = ({ children }) => {
   const editStaff = async (staff: IStaff) => {
     return await StaffService.editStaff(staff);
   };
+
+  // GET staff when adding or updating a staff
+  useEffect(() => {
+    getStaffFromService();
+  }, [addStaff, editStaff]);
 
   const deleteStaff = async (id: string) => {
     let res = await StaffService.deleteStaff(id);
