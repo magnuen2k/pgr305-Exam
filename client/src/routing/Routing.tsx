@@ -13,6 +13,7 @@ import {
   AdminEditPlayer,
   AdminStaff,
   AdminEditStaff,
+  AdminAddTrophy,
 } from "../pages";
 import PlayerDetails from "../pages/PlayerDetails";
 
@@ -30,6 +31,7 @@ const Routing = () => {
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/addPlayer" element={<AdminAddPlayer />} />
         <Route path="/admin/addStaff" element={<AdminAddStaff />} />
+        <Route path="/admin/addTrophy" element={<AdminAddTrophy />} />
         <Route path="/admin/players" element={<AdminPlayers />} />
         <Route path="/admin/staff" element={<AdminStaff />} />
         <Route path="/admin/players/edit/:id" element={<AdminEditPlayer />} />

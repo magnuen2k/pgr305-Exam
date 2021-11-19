@@ -10,7 +10,7 @@ import ResponseView from "../shared/ResponseView";
 
 const AdminAddTrophyForm = () => {
   const initialState = {
-    tournamentName: "default",
+    tournamentName: "",
     image: "default.jpeg",
     yearsWon: [1994, 1995],
   };
