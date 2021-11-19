@@ -1,5 +1,5 @@
 export interface ITrophy {
-  id: string;
+  id?: string;
   tournamentName: string;
   image: string;
   yearsWon: Array<number>;
