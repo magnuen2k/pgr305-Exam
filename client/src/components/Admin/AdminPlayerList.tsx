@@ -5,26 +5,33 @@ import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
 import Loading from "../shared/Loading";
 import AdminPlayerItem from "./AdminPlayerItem";
+import { PLAYER_POSITIONS } from "../../utils";
 
 const AdminPlayerList = () => {
   const { players } = useContext(PlayerContext) as PlayerContextType;
 
   const createPlayerList = () => {
-    return players.map((player: IPlayer, key: number) => {
-      return (
-        <Col md={6} lg={4} xl={3} className="mt-5" key={key}>
-          <AdminPlayerItem
-            id={player.id}
-            name={player.name}
-            club={player.club}
-            image={player.image}
-            nationality={player.nationality}
-            dateOfBirth={player.dateOfBirth}
-            position={player.position}
-          />
-        </Col>
-      );
-    });
+    return players
+      .sort(
+        (a, b) =>
+          PLAYER_POSITIONS.indexOf(a.position) -
+          PLAYER_POSITIONS.indexOf(b.position)
+      )
+      .map((player: IPlayer, key: number) => {
+        return (
+          <Col md={6} lg={4} xl={3} className="mt-5" key={key}>
+            <AdminPlayerItem
+              id={player.id}
+              name={player.name}
+              club={player.club}
+              image={player.image}
+              nationality={player.nationality}
+              dateOfBirth={player.dateOfBirth}
+              position={player.position}
+            />
+          </Col>
+        );
+      });
   };
 
   return (

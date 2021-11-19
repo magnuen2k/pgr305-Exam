@@ -5,26 +5,29 @@ import { IStaff } from "../../interfaces/IStaff";
 import { StaffContextType } from "../../types/StaffContextType";
 import Loading from "../shared/Loading";
 import AdminStaffItem from "./AdminStaffItem";
+import { STAFF_ROLES } from "../../utils";
 
 const AdminStaffList = () => {
   const { staff } = useContext(StaffContext) as StaffContextType;
 
   const createStaffList = () => {
-    return staff.map((staff: IStaff, key: number) => {
-      return (
-        <Col md={6} lg={4} xl={3} className="mt-5" key={key}>
-          <AdminStaffItem
-            id={staff.id}
-            name={staff.name}
-            club={staff.club}
-            image={staff.image}
-            nationality={staff.nationality}
-            dateOfBirth={staff.dateOfBirth}
-            role={staff.role}
-          />
-        </Col>
-      );
-    });
+    return staff
+      .sort((a, b) => STAFF_ROLES.indexOf(a.role) - STAFF_ROLES.indexOf(b.role))
+      .map((staff: IStaff, key: number) => {
+        return (
+          <Col md={6} lg={4} xl={3} className="mt-5" key={key}>
+            <AdminStaffItem
+              id={staff.id}
+              name={staff.name}
+              club={staff.club}
+              image={staff.image}
+              nationality={staff.nationality}
+              dateOfBirth={staff.dateOfBirth}
+              role={staff.role}
+            />
+          </Col>
+        );
+      });
   };
 
   return (
