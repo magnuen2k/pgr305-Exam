@@ -20,7 +20,7 @@ const TrophyItem: FC<ITrophy> = ({ id, image, tournamentName, yearsWon }) => {
           <Accordion.Item eventKey="0">
             <Accordion.Header>See years won</Accordion.Header>
             <Accordion.Body>
-              {yearsWon.map((y, key) => {
+              {yearsWon.sort().map((y, key) => {
                 if (key === 0) return <span key={key}>{y}</span>;
                 return <span key={key}>, {y}</span>;
               })}
