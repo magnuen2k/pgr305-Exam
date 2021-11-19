@@ -1,6 +1,6 @@
 import axios from "axios";
 import { IPlayer } from "../interfaces/IPlayer";
-import { API_URL } from "../utils/Constants";
+import { API_URL } from "../utils";
 
 export const PlayerService = (function () {
   const baseUrl = `${API_URL}/api/player`;

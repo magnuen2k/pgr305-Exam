@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { ITrophy } from "../../interfaces/ITrophy";
 import { Accordion, Card } from "react-bootstrap";
-import { API_URL } from "../../utils/Constants";
+import { API_URL } from "../../utils";
 
 const TrophyItem: FC<ITrophy> = ({ id, image, tournamentName, yearsWon }) => {
   return (

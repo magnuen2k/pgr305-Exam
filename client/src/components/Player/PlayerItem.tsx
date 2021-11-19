@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { IPlayer } from "../../interfaces/IPlayer";
-import { API_URL } from "../../utils/Constants";
+import { API_URL } from "../../utils";
 import styled from "styled-components";
 
 const PlayerItem: FC<IPlayer> = ({

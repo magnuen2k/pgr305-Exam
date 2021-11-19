@@ -3,7 +3,7 @@ import { Row, Col, Container, InputGroup, FormControl } from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
-import { PLAYER_POSITIONS } from "../../utils/Constants";
+import { PLAYER_POSITIONS } from "../../utils";
 import FilterOptions from "../shared/FilterOptions";
 import Loading from "../shared/Loading";
 import PlayerItem from "./PlayerItem";

@@ -2,8 +2,7 @@ import React, { FC } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { IStaff } from "../../interfaces/IStaff";
-import { API_URL } from "../../utils/Constants";
-import { getAge, getSimpleBirthOfDate } from "../../utils/GetAge";
+import { API_URL, getAge, getSimpleBirthOfDate } from "../../utils";
 
 const StaffItem: FC<IStaff> = ({
   id,

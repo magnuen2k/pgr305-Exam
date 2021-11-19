@@ -1,6 +1,6 @@
 import axios from "axios";
 import { IStaff } from "../interfaces/IStaff";
-import { API_URL } from "../utils/Constants";
+import { API_URL } from "../utils";
 
 export const StaffService = (function () {
   const baseUrl = `${API_URL}/api/staff`;

@@ -2,8 +2,7 @@ import React, { FC } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { IPlayer } from "../../interfaces/IPlayer";
-import { API_URL } from "../../utils/Constants";
-import { getAge, getSimpleBirthOfDate } from "../../utils/GetAge";
+import { API_URL, getAge, getSimpleBirthOfDate } from "../../utils";
 
 const PlayerDetailCard: FC<IPlayer> = ({
   id,

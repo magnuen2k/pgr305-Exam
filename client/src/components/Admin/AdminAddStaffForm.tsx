@@ -4,12 +4,11 @@ import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { StaffContext } from "../../contexts/StaffContext";
 import { IStaff } from "../../interfaces/IStaff";
 import { StaffContextType } from "../../types/StaffContextType";
-import { API_URL, STAFF_ROLES } from "../../utils/Constants";
 import FilterOptions from "../shared/FilterOptions";
 import { IResponse } from "../../interfaces/IResponse";
 import Loading from "../shared/Loading";
 import ResponseView from "../shared/ResponseView";
-import { handleError, handleImageUpload } from "../../utils";
+import { handleError, handleImageUpload, STAFF_ROLES } from "../../utils";
 
 const AdminAddStaffForm = () => {
   const initialState = {

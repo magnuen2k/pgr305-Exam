@@ -6,8 +6,7 @@ import { StaffContext } from "../../contexts/StaffContext";
 import { IResponse } from "../../interfaces/IResponse";
 import { IStaff } from "../../interfaces/IStaff";
 import { StaffContextType } from "../../types/StaffContextType";
-import { handleError } from "../../utils";
-import { API_URL } from "../../utils/Constants";
+import { API_URL, handleError } from "../../utils";
 import Loading from "../shared/Loading";
 import ResponseView from "../shared/ResponseView";
 

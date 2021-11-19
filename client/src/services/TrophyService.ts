@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ITrophy } from "../interfaces/ITrophy";
-import { API_URL } from "../utils/Constants";
+import { API_URL } from "../utils";
 
 export const TrophyService = (function () {
   const baseUrl = `${API_URL}/api/trophy`;
