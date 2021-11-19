@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { FC, useContext, useState } from "react";
 import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
