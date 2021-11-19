@@ -18,21 +18,27 @@ const PlayerList: FC = () => {
     // Display either full list of players or filtered copy
     const list = allPlayers.length > 0 ? allPlayers : players;
 
-    return list.map((player: IPlayer, key: number) => {
-      return (
-        <Col md={6} lg={4} xl={3} className="mt-5" key={key}>
-          <PlayerItem
-            id={player.id}
-            name={player.name}
-            club={player.club}
-            image={player.image}
-            nationality={player.nationality}
-            dateOfBirth={player.dateOfBirth}
-            position={player.position}
-          />
-        </Col>
-      );
-    });
+    return list
+      .sort(
+        (a, b) =>
+          PLAYER_POSITIONS.indexOf(a.position) -
+          PLAYER_POSITIONS.indexOf(b.position)
+      )
+      .map((player: IPlayer, key: number) => {
+        return (
+          <Col md={6} lg={4} xl={3} className="mt-5" key={key}>
+            <PlayerItem
+              id={player.id}
+              name={player.name}
+              club={player.club}
+              image={player.image}
+              nationality={player.nationality}
+              dateOfBirth={player.dateOfBirth}
+              position={player.position}
+            />
+          </Col>
+        );
+      });
   };
 
   useEffect(() => {
