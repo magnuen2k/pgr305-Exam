@@ -14,8 +14,13 @@ export const StaffService = (function () {
     return await axios.post(baseUrl, staff);
   };
 
+  const deleteStaff = async (id: string) => {
+    return await axios.delete(`${baseUrl}/${id}`);
+  };
+
   return {
     getStaff,
     addStaff,
+    deleteStaff,
   };
 })();

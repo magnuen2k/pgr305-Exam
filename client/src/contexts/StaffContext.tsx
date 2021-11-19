@@ -25,8 +25,21 @@ export const StaffProvider: FC = ({ children }) => {
     return await StaffService.addStaff(staff);
   };
 
+  const deleteStaff = async (id: string) => {
+    let res = await StaffService.deleteStaff(id);
+
+    // Delete from context state aswell to avoid reload
+    if (res.status === 204) {
+      setStaff(staff.filter((s) => s.id !== id));
+    }
+
+    return res;
+  };
+
   return (
-    <StaffContext.Provider value={{ staff, getStaffById, addStaff }}>
+    <StaffContext.Provider
+      value={{ staff, getStaffById, addStaff, deleteStaff }}
+    >
       {children}
     </StaffContext.Provider>
   );

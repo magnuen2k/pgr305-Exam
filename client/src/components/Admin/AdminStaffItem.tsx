@@ -1,9 +1,12 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Button, Card, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { StaffContext } from "../../contexts/StaffContext";
 import { IResponse } from "../../interfaces/IResponse";
 import { IStaff } from "../../interfaces/IStaff";
+import { StaffContextType } from "../../types/StaffContextType";
+import { handleError } from "../../utils";
 import { API_URL } from "../../utils/Constants";
 import Loading from "../shared/Loading";
 import ResponseView from "../shared/ResponseView";
@@ -17,6 +20,7 @@ const AdminStaffItem: FC<IStaff> = ({
   dateOfBirth,
   role,
 }) => {
+  const { deleteStaff } = useContext(StaffContext) as StaffContextType;
   const [isPopup, setIsPopup] = useState<boolean>(false);
   const [response, setResponse] = useState<IResponse>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -26,6 +30,16 @@ const AdminStaffItem: FC<IStaff> = ({
 
   const deleteStaffById = async () => {
     console.log("deleted " + id);
+
+    let res;
+
+    if (id) {
+      try {
+        res = await deleteStaff(id);
+      } catch (e: any) {
+        handleError(e, setIsLoading, setResponse);
+      }
+    }
   };
 
   return (
