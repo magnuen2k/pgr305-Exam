@@ -11,6 +11,8 @@ import AdminEditPlayer from "./AdminEditPlayer";
 import AdminStaff from "./AdminStaff";
 import AdminEditStaff from "./AdminEditStaff";
 import AdminAddTrophy from "./AdminAddTrophy";
+import AdminEditTrophy from "./AdminEditTrophy";
+import AdminTrophies from "./AdminTrophies";
 
 export {
   Players,
@@ -26,4 +28,6 @@ export {
   AdminStaff,
   AdminEditStaff,
   AdminAddTrophy,
+  AdminTrophies,
+  AdminEditTrophy,
 };

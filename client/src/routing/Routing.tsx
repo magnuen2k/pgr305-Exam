@@ -14,6 +14,8 @@ import {
   AdminStaff,
   AdminEditStaff,
   AdminAddTrophy,
+  AdminEditTrophy,
+  AdminTrophies,
 } from "../pages";
 import PlayerDetails from "../pages/PlayerDetails";
 
@@ -34,8 +36,10 @@ const Routing = () => {
         <Route path="/admin/addTrophy" element={<AdminAddTrophy />} />
         <Route path="/admin/players" element={<AdminPlayers />} />
         <Route path="/admin/staff" element={<AdminStaff />} />
+        <Route path="/admin/trophy" element={<AdminTrophies />} />
         <Route path="/admin/players/edit/:id" element={<AdminEditPlayer />} />
         <Route path="/admin/staff/edit/:id" element={<AdminEditStaff />} />
+        <Route path="/admin/trophies/edit/:id" element={<AdminEditTrophy />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

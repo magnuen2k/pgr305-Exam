@@ -58,6 +58,13 @@ const AdminDashboard = () => {
             >
               Add trophies
             </Button>
+            <Button
+              variant="danger"
+              className="m-3"
+              onClick={() => navigate("/admin/trophy")}
+            >
+              Manage trophies
+            </Button>
           </StyledCard>
         </StyledCol>
       </Row>
