@@ -1,5 +1,5 @@
 import React, { FC, useContext, useState } from "react";
-import { Button, Form, FormControl } from "react-bootstrap";
+import { Button, Form, FormControl, Modal } from "react-bootstrap";
 import { IResponse } from "../../interfaces/IResponse";
 import { handleError, handleImageUpload } from "../../utils";
 import Loading from "../shared/Loading";
@@ -7,6 +7,7 @@ import ResponseView from "../shared/ResponseView";
 import { ITrophy } from "../../interfaces/ITrophy";
 import { TrophyContext } from "../../contexts/TrophyContext";
 import { TrophyContextType } from "../../types/TrophyContextType";
+import styled from "styled-components";
 
 interface AdminEditTrophyFormProps {
   trophy: ITrophy;
@@ -19,10 +20,11 @@ const AdminEditTrophyForm: FC<AdminEditTrophyFormProps> = ({ trophy }) => {
   const [newImage, setNewImage] = useState<File>();
   const [response, setResponse] = useState<IResponse>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [year, setYear] = useState<string>("");
+  const [isPopup, setIsPopup] = useState<boolean>(false);
 
-  /*  const handlePosition = (e: any) => {
-    setEditedTrophy({ ...editedTrophy, position: e.target.value });
-  };*/
+  const handleClose = () => setIsPopup(false);
+  const handleShow = () => setIsPopup(true);
 
   // Upload image to server, if successful, add edited trophy to database
 
@@ -54,6 +56,18 @@ const AdminEditTrophyForm: FC<AdminEditTrophyFormProps> = ({ trophy }) => {
     }
   };
 
+  const addYearWon = () => {
+    if (year.length === 4) {
+      setEditedTrophy({
+        ...editedTrophy,
+        yearsWon: [...editedTrophy.yearsWon, parseInt(year, 10)],
+      });
+      setYear("");
+    } else {
+      setIsPopup(true);
+    }
+  };
+
   return (
     <div className="mb-2 mt-5">
       <Form>
@@ -69,16 +83,37 @@ const AdminEditTrophyForm: FC<AdminEditTrophyFormProps> = ({ trophy }) => {
             }
           />
         </Form.Group>
-        {/*          <Form.Group>             array stuff
-            <FormControl
-                placeholder="Nationality"
-                value={editedTrophy.yearsWon}
-                onChange={(e) =>
-                    setEditedTrophy({ ...editedTrophy, yearsWon: e.target.value })
-                }
-            />
-          </Form.Group>*/}
-
+        <Form.Group>
+          <FormControl
+            type="number"
+            placeholder="Years won"
+            value={year}
+            onChange={(e: any) => setYear(e.target.value)}
+          />
+          <Button onClick={addYearWon}>Add year won</Button>
+          <div>
+            {editedTrophy.yearsWon?.map((y, key) => {
+              return (
+                <div key={key}>
+                  <span>{y} - </span>
+                  <span
+                    style={{ cursor: "pointer" }}
+                    onClick={() =>
+                      setEditedTrophy({
+                        ...editedTrophy,
+                        yearsWon: editedTrophy.yearsWon.filter(
+                          (yw) => yw !== y
+                        ),
+                      })
+                    }
+                  >
+                    Remove
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Control
             type="file"
@@ -93,6 +128,13 @@ const AdminEditTrophyForm: FC<AdminEditTrophyFormProps> = ({ trophy }) => {
         </Form.Group>
         <Button onClick={editNewTrophy}>Edit trophy</Button>
       </Form>
+      <StyledModal show={isPopup} onHide={handleClose}>
+        <Modal.Header closeButton onClick={handleClose}></Modal.Header>
+
+        <Modal.Body>
+          <p>You have to provide a year with 4 numbers. Got {year.length}.</p>
+        </Modal.Body>
+      </StyledModal>
       {isLoading && <Loading />}
       {response && (
         <ResponseView
@@ -103,5 +145,9 @@ const AdminEditTrophyForm: FC<AdminEditTrophyFormProps> = ({ trophy }) => {
     </div>
   );
 };
+
+const StyledModal = styled(Modal)`
+  margin-top: 30vh;
+`;
 
 export default AdminEditTrophyForm;
