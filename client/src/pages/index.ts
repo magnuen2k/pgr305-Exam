@@ -8,6 +8,7 @@ import NotFound from "./NotFound";
 import Trophies from "./Trophies";
 import AdminPlayers from "./AdminPlayers";
 import AdminEditPlayer from "./AdminEditPlayer";
+import AdminStaff from "./AdminStaff";
 
 export {
   Players,
@@ -20,4 +21,5 @@ export {
   NotFound,
   AdminPlayers,
   AdminEditPlayer,
+  AdminStaff,
 };

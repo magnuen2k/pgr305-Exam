@@ -39,6 +39,13 @@ const AdminDashboard = () => {
             >
               Add staff
             </Button>
+            <Button
+              variant="danger"
+              className="m-3"
+              onClick={() => navigate("/admin/staff")}
+            >
+              Manage staff
+            </Button>
           </StyledCard>
         </StyledCol>
       </Row>
