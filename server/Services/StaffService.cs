@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MongoDB.Driver;
 using server.Models;
 
@@ -17,28 +18,70 @@ namespace server.Services
 
         public List<Staff> GetStaff()
         {
-            return _staff.Find(staff => true).ToList();
+            var res = new List<Staff>();
+            try
+            {
+                res = _staff.Find(staff => true).ToList();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return res;
         }
 
         public Staff GetStaff(string id)
         {
-            return _staff.Find<Staff>(staff => staff.Id == id).FirstOrDefault();
+            var res = new Staff();
+            try
+            {
+                res = _staff.Find<Staff>(staff => staff.Id == id).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return res;
         }
 
         public Staff PostStaff(Staff newStaff)
         {
-            _staff.InsertOne( newStaff );
+            try
+            {
+                _staff.InsertOne(newStaff);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
             return newStaff;
         }
 
         public void UpdateStaff(Staff staffIn)
         {
-            _staff.ReplaceOne(staff => staff.Id == staffIn.Id, staffIn);
+            try
+            {
+                _staff.ReplaceOne(staff => staff.Id == staffIn.Id, staffIn);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public void RemoveStaff(string id)
         {
-            _staff.DeleteOne(staff => staff.Id == id);
+            try
+            {
+                _staff.DeleteOne(staff => staff.Id == id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

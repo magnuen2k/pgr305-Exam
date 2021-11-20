@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MongoDB.Driver;
 using server.Models;
 
@@ -17,28 +18,70 @@ namespace server.Services
 
         public List<Trophy> GetTrophies()
         {
-            return _trophies.Find(trophy => true).ToList();
+            var res = new List<Trophy>();
+            try
+            {
+                res = _trophies.Find(trophy => true).ToList();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return res;
         }
 
         public Trophy GetTrophy(string id)
         {
-            return _trophies.Find<Trophy>(trophy => trophy.Id == id).FirstOrDefault();
+            var res = new Trophy();
+            try
+            {
+                res = _trophies.Find<Trophy>(trophy => trophy.Id == id).FirstOrDefault();
+            } catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return res;
         }
 
         public Trophy PostTrophy(Trophy newTrophy)
         {
-            _trophies.InsertOne(newTrophy);
+            try
+            {
+                _trophies.InsertOne(newTrophy);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
             return newTrophy;
         }
 
         public void UpdateTrophy(Trophy trophyIn)
         {
-            _trophies.ReplaceOne(trophy => trophy.Id == trophyIn.Id, trophyIn);
+
+            try
+            {
+                _trophies.ReplaceOne(trophy => trophy.Id == trophyIn.Id, trophyIn);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public void RemoveTrophy(string id)
         {
-            _trophies.DeleteOne(trophy => trophy.Id == id);
+            try
+            {
+                _trophies.DeleteOne(trophy => trophy.Id == id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }

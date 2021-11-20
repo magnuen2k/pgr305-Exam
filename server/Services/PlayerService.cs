@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using MongoDB.Driver;
 using server.Models;
@@ -17,28 +18,69 @@ namespace server.Services
 
         public List<Player> GetPlayers()
         {
-            return _players.Find(player => true).ToList();
+            var res = new List<Player>();
+            try
+            {
+                res = _players.Find(player => true).ToList();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return res;
         }
 
         public Player GetPlayer(string id)
         {
-            return _players.Find<Player>(player => player.Id == id).FirstOrDefault();
+            var res = new Player();
+            try
+            {
+                res = _players.Find<Player>(player => player.Id == id).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+
+            return res;
         }
 
         public Player PostPlayer(Player newPlayer)
         {
-            _players.InsertOne(newPlayer);
+            try
+            {
+                _players.InsertOne(newPlayer);
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            
             return newPlayer;
         }
         
         public void UpdatePlayer(Player playerIn)
         {
-            _players.ReplaceOne(player => player.Id == playerIn.Id, playerIn);
+            try
+            {
+                _players.ReplaceOne(player => player.Id == playerIn.Id, playerIn);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public void RemovePlayer(string id)
         {
-            _players.DeleteOne(player => player.Id == id);
+            try
+            {
+                _players.DeleteOne(player => player.Id == id);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
     }
 }
