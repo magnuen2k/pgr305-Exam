@@ -27,7 +27,6 @@ const AdminEditTrophyForm: FC<AdminEditTrophyFormProps> = ({ trophy }) => {
   const handleShow = () => setIsPopup(true);
 
   // Upload image to server, if successful, add edited trophy to database
-
   const editNewTrophy = async () => {
     let imgRes;
     if (newImage) {

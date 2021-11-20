@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { FC, useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { TrophyContext } from "../../contexts/TrophyContext";
 import { ITrophy } from "../../interfaces/ITrophy";
@@ -6,7 +6,7 @@ import { TrophyContextType } from "../../types/TrophyContextType";
 import Loading from "../shared/Loading";
 import AdminTrophyItem from "./AdminTrophyItem";
 
-const AdminTrophyList = () => {
+const AdminTrophyList: FC = () => {
   const { trophies } = useContext(TrophyContext) as TrophyContextType;
 
   const createTrophyList = () => {

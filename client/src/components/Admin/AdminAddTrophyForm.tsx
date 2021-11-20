@@ -1,12 +1,5 @@
 import React, { FC, useContext, useState } from "react";
-import {
-  Button,
-  Card,
-  Form,
-  FormControl,
-  InputGroup,
-  Modal,
-} from "react-bootstrap";
+import { Button, Form, FormControl, Modal } from "react-bootstrap";
 import { TrophyContext } from "../../contexts/TrophyContext";
 import { ITrophy } from "../../interfaces/ITrophy";
 import { IResponse } from "../../interfaces/IResponse";
@@ -16,10 +9,10 @@ import Loading from "../shared/Loading";
 import ResponseView from "../shared/ResponseView";
 import styled from "styled-components";
 
-const AdminAddTrophyForm = () => {
+const AdminAddTrophyForm: FC = () => {
   const initialState = {
     tournamentName: "",
-    image: "default.jpeg",
+    image: "placeholder.png",
     yearsWon: [],
   };
 

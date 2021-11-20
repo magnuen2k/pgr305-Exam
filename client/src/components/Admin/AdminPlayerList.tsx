@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { FC, useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
@@ -7,7 +7,7 @@ import Loading from "../shared/Loading";
 import AdminPlayerItem from "./AdminPlayerItem";
 import { PLAYER_POSITIONS } from "../../utils";
 
-const AdminPlayerList = () => {
+const AdminPlayerList: FC = () => {
   const { players } = useContext(PlayerContext) as PlayerContextType;
 
   const createPlayerList = () => {

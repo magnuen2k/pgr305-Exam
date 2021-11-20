@@ -17,12 +17,11 @@ const AdminTrophyItem: FC<ITrophy> = ({ id, tournamentName, image }) => {
   const [response, setResponse] = useState<IResponse>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  // Try to delete trophy if id is provided
   const deleteTrophyById = async () => {
-    let res;
-
     if (id) {
       try {
-        res = await deleteTrophy(id);
+        await deleteTrophy(id);
       } catch (e: any) {
         handleError(e, setIsLoading, setResponse);
       }

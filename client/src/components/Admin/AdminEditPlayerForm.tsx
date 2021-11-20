@@ -1,7 +1,5 @@
-import axios from "axios";
 import React, { FC, useContext, useState } from "react";
 import { Button, Form, FormControl } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { IResponse } from "../../interfaces/IResponse";
