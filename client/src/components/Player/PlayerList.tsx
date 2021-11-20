@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Row, Col, Container, InputGroup, FormControl } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
@@ -11,7 +11,6 @@ import PlayerItem from "./PlayerItem";
 const PlayerList: FC = () => {
   const { players } = useContext(PlayerContext) as PlayerContextType;
   const [allPlayers, setAllPlayers] = useState<IPlayer[]>([]);
-  const [searchText, setSearchText] = useState<string>("");
   const [filterText, setFilterText] = useState<string>("");
 
   const createPlayerList = () => {
@@ -53,28 +52,9 @@ const PlayerList: FC = () => {
     }
   }, [filterText]);
 
-  useEffect(() => {
-    if (searchText.length === 0) {
-      setAllPlayers(players);
-    } else {
-      let filteredPlayers = players.filter((p) => {
-        const name = p.name.toLowerCase();
-        return name.includes(searchText);
-      });
-      setAllPlayers(filteredPlayers);
-    }
-  }, [searchText]);
-
   return (
     <Container className="pt-5" id="players">
       <h3 className="mb-3">Players</h3>
-      {/* <InputGroup>
-        <FormControl
-          placeholder="Search by player name"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-        />
-      </InputGroup> */}
 
       {players.length <= 0 ? (
         <Loading />

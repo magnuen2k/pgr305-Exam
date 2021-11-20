@@ -6,6 +6,7 @@ interface IFilterOptionsProps {
   options: string[];
 }
 
+// Custom select component for dropdown menu
 const FilterOptions: FC<IFilterOptionsProps> = ({ handleChange, options }) => {
   return (
     <Form.Select onChange={handleChange}>

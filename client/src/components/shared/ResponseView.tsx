@@ -3,11 +3,13 @@ import { Alert, Modal } from "react-bootstrap";
 import styled from "styled-components";
 import { IResponse } from "../../interfaces/IResponse";
 
+// Component for giving response to user based on status-code from http-request
 const ResponseView: FC<IResponse> = ({ message, statusCode }) => {
   const [isPopup, setIsPopup] = useState<boolean>(true);
   let responseMessage;
   let color;
 
+  // Set response message and color based on status-code category
   if (statusCode >= 200 && statusCode < 300) {
     responseMessage = "Success";
     color = "success";
@@ -27,7 +29,7 @@ const ResponseView: FC<IResponse> = ({ message, statusCode }) => {
 
   return (
     <StyledModal show={isPopup} onHide={handleClose}>
-      <Modal.Header closeButton onClick={handleClose}></Modal.Header>
+      <Modal.Header closeButton onClick={handleClose} />
       <Modal.Body>
         <Alert variant={color}>
           <Alert.Heading>{responseMessage}</Alert.Heading>

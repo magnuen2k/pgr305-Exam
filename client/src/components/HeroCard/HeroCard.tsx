@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import styled from "styled-components";
 
-const HeroCard = () => {
+const HeroCard: FC = () => {
   return (
     <StyledHeroBg>
       <StyledHeroImg src="/header-wallpaper-full.png" alt="wallpaper hero" />
