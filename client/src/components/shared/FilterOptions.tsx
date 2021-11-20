@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { Form } from "react-bootstrap";
-import { PLAYER_POSITIONS } from "../../utils";
 
 interface IFilterOptionsProps {
   handleChange: (e: any) => void;
