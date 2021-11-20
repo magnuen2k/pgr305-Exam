@@ -1,18 +1,18 @@
 import Players from "./Players";
 import Home from "./Home";
 import Staff from "./Staff";
-import AdminDashboard from "./AdminDashboard";
-import AdminAddPlayer from "./AdminAddPlayer";
-import AdminAddStaff from "./AdminAddStaff";
+import AdminDashboard from "./Admin/AdminDashboard";
+import AdminAddPlayer from "./Admin/AdminAddPlayer";
+import AdminAddStaff from "./Admin/AdminAddStaff";
 import NotFound from "./NotFound";
 import Trophies from "./Trophies";
-import AdminPlayers from "./AdminPlayers";
-import AdminEditPlayer from "./AdminEditPlayer";
-import AdminStaff from "./AdminStaff";
-import AdminEditStaff from "./AdminEditStaff";
-import AdminAddTrophy from "./AdminAddTrophy";
-import AdminEditTrophy from "./AdminEditTrophy";
-import AdminTrophies from "./AdminTrophies";
+import AdminPlayers from "./Admin/AdminPlayers";
+import AdminEditPlayer from "./Admin/AdminEditPlayer";
+import AdminStaff from "./Admin/AdminStaff";
+import AdminEditStaff from "./Admin/AdminEditStaff";
+import AdminAddTrophy from "./Admin/AdminAddTrophy";
+import AdminEditTrophy from "./Admin/AdminEditTrophy";
+import AdminTrophies from "./Admin/AdminTrophies";
 
 export {
   Players,

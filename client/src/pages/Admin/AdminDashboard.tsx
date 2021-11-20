@@ -1,9 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const AdminDashboard = () => {
+const AdminDashboard: FC = () => {
   const navigate = useNavigate();
 
   return (

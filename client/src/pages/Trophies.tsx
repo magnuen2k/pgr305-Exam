@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import TrophyList from "../components/Trophy/TrophyList";
 
-const Trophies = () => {
+const Trophies: FC = () => {
   return (
     <>
       <TrophyList />

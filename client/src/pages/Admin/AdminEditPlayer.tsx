@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import AdminEditPlayerForm from "../components/Admin/AdminEditPlayerForm";
-import { PlayerContext } from "../contexts/PlayerContext";
-import { IPlayer } from "../interfaces/IPlayer";
-import { PlayerContextType } from "../types/PlayerContextType";
+import AdminEditPlayerForm from "../../components/Admin/AdminEditPlayerForm";
+import { PlayerContext } from "../../contexts/PlayerContext";
+import { IPlayer } from "../../interfaces/IPlayer";
+import { PlayerContextType } from "../../types/PlayerContextType";
 
-const AdminEditPlayer = () => {
+const AdminEditPlayer: FC = () => {
   const { id } = useParams();
 
   const { getPlayerById } = useContext(PlayerContext) as PlayerContextType;

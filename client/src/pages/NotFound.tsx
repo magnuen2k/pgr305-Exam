@@ -1,6 +1,6 @@
-import React from "react";
+import React, { FC } from "react";
 
-const NotFound = () => {
+const NotFound: FC = () => {
   return (
     <div>
       <h3>The page you are looking for does not exist!</h3>

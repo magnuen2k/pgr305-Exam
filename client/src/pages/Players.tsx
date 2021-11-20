@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import PlayerList from "../components/Player/PlayerList";
 
-const Players = () => {
+const Players: FC = () => {
   return (
     <>
       <p>Search bar here</p>

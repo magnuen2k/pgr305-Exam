@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import { Container } from "react-bootstrap";
-import AdminAddTrophyForm from "../components/Admin/AdminAddTrophyForm";
+import AdminAddTrophyForm from "../../components/Admin/AdminAddTrophyForm";
 
-const AdminAddTrophy = () => {
+const AdminAddTrophy: FC = () => {
   return (
     <Container>
       <p>Add a trophy</p>
