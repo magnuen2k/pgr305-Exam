@@ -92,6 +92,7 @@ const AdminEditPlayerForm: FC<AdminEditPlayerFormProps> = ({ player }) => {
           <FilterOptions
             handleChange={handlePosition}
             options={PLAYER_POSITIONS}
+            defaultOption={player.position}
           />
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
