@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { FC, useContext } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { StaffContext } from "../../contexts/StaffContext";
 import { IStaff } from "../../interfaces/IStaff";
@@ -7,7 +7,7 @@ import Loading from "../shared/Loading";
 import AdminStaffItem from "./AdminStaffItem";
 import { STAFF_ROLES } from "../../utils";
 
-const AdminStaffList = () => {
+const AdminStaffList: FC = () => {
   const { staff } = useContext(StaffContext) as StaffContextType;
 
   const createStaffList = () => {

@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { TrophyContext } from "../contexts/TrophyContext";
-import { TrophyContextType } from "../types/TrophyContextType";
-import { ITrophy } from "../interfaces/ITrophy";
-import AdminEditTrophyForm from "../components/Admin/AdminEditTrophyForm";
+import { TrophyContext } from "../../contexts/TrophyContext";
+import { TrophyContextType } from "../../types/TrophyContextType";
+import { ITrophy } from "../../interfaces/ITrophy";
+import AdminEditTrophyForm from "../../components/Admin/AdminEditTrophyForm";
 
-const AdminEditTrophy = () => {
+const AdminEditTrophy: FC = () => {
   const { id } = useParams();
 
   const { getTrophyById } = useContext(TrophyContext) as TrophyContextType;

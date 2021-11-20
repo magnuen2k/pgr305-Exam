@@ -34,7 +34,6 @@ const PlayerItem: FC<IPlayer> = ({
 const StyledCardImgContainer = styled.div`
   height: 20rem;
   overflow: hidden;
-  transition: 0.1s ease;
   transition: all linear 0.25s;
 `;
 
@@ -44,7 +43,7 @@ const StyledPlayerCardName = styled(Card.Title)`
   bottom: 20px;
   font-size: 20px;
   color: #fff;
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 1);
   font-weight: bold;
   transition: all linear 0.25s;
 `;
@@ -52,12 +51,11 @@ const StyledPlayerCardName = styled(Card.Title)`
 const StyledCardContainer = styled(Card)`
   transition: 0.1s ease;
   cursor: pointer;
-  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
   background-position: center;
   overflow: hidden;
   position: relative;
   margin: 10px auto;
-  cursor: pointer;
   &:hover {
     transform: scale(1.01);
   }

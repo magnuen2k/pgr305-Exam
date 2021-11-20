@@ -1,7 +1,7 @@
-import React from "react";
+import React, { FC } from "react";
 import StaffList from "../components/Staff/StaffList";
 
-const Staff = () => {
+const Staff: FC = () => {
   return (
     <div>
       <StaffList />

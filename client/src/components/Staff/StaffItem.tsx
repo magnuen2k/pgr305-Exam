@@ -1,6 +1,5 @@
 import React, { FC } from "react";
 import { Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { IStaff } from "../../interfaces/IStaff";
 import { API_URL, getAge, getSimpleBirthOfDate } from "../../utils";
 
@@ -22,7 +21,6 @@ const StaffItem: FC<IStaff> = ({
           className="img-fluid"
         />
       </div>
-      {/*<Card.Title className="Staff-card-name">{name}</Card.Title>*/}
       <Card.Body>
         <Card.Text>Name: {name}</Card.Text>
         <Card.Text>Club: {club}</Card.Text>

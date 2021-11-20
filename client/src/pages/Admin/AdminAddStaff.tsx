@@ -1,8 +1,8 @@
-import React from "react";
+import React, { FC } from "react";
 import { Container } from "react-bootstrap";
-import AdminAddStaffForm from "../components/Admin/AdminAddStaffForm";
+import AdminAddStaffForm from "../../components/Admin/AdminAddStaffForm";
 
-const AdminAddStaff = () => {
+const AdminAddStaff: FC = () => {
   return (
     <Container>
       <p>Add a staff</p>

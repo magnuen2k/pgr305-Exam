@@ -8,6 +8,7 @@ interface IFilterOptionsProps {
   defaultOption?: string;
 }
 
+// Custom select component for dropdown menu
 const FilterOptions: FC<IFilterOptionsProps> = ({
   handleChange,
   options,

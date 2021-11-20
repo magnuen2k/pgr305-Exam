@@ -5,7 +5,7 @@ import { IStaff } from "../../interfaces/IStaff";
 import { StaffContextType } from "../../types/StaffContextType";
 import Loading from "../shared/Loading";
 import StaffItem from "./StaffItem";
-import { PLAYER_POSITIONS, STAFF_ROLES } from "../../utils";
+import { STAFF_ROLES } from "../../utils";
 
 const StaffList: FC = () => {
   const { staff } = useContext(StaffContext) as StaffContextType;

@@ -27,14 +27,11 @@ const AdminStaffItem: FC<IStaff> = ({
   const handleClose = () => setIsPopup(false);
   const handleShow = () => setIsPopup(true);
 
+  // Try to delete staff if id is provided
   const deleteStaffById = async () => {
-    console.log("deleted " + id);
-
-    let res;
-
     if (id) {
       try {
-        res = await deleteStaff(id);
+        await deleteStaff(id);
       } catch (e: any) {
         handleError(e, setIsLoading, setResponse);
       }

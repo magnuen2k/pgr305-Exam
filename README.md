@@ -38,4 +38,4 @@ The frontend is structured like shown in class. There's also a folder for utils 
 Hva vi har brukt av teknikker, accordian osv
 
 ## Bugs osv?
-issues?
+Om man legger til årstall 0013 f.eks på trophy yearwon blir det bare '13' i databasen

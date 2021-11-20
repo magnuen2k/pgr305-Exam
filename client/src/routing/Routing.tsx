@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainNavigation from "../components/shared/MainNavigation";
 import {
@@ -19,7 +20,7 @@ import {
 } from "../pages";
 import PlayerDetails from "../pages/PlayerDetails";
 
-const Routing = () => {
+const Routing: FC = () => {
   return (
     <BrowserRouter>
       <MainNavigation />

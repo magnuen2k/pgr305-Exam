@@ -1,6 +1,5 @@
-import axios from "axios";
-import React, { useContext, useState } from "react";
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import React, { FC, useContext, useState } from "react";
+import { Button, Form, FormControl } from "react-bootstrap";
 import { StaffContext } from "../../contexts/StaffContext";
 import { IStaff } from "../../interfaces/IStaff";
 import { StaffContextType } from "../../types/StaffContextType";
@@ -10,11 +9,11 @@ import Loading from "../shared/Loading";
 import ResponseView from "../shared/ResponseView";
 import { handleError, handleImageUpload, STAFF_ROLES } from "../../utils";
 
-const AdminAddStaffForm = () => {
+const AdminAddStaffForm: FC = () => {
   const initialState = {
     name: "",
     club: "Liverpool FC",
-    image: "klopp.jpeg",
+    image: "placeholder.png",
     nationality: "",
     dateOfBirth: new Date(),
     role: "",
@@ -26,8 +25,8 @@ const AdminAddStaffForm = () => {
   const { addStaff } = useContext(StaffContext) as StaffContextType;
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  // Upload image to server, if successful, add player to database
   const addNewStaff = async () => {
-    // Upload image to server, if successful, add player to database
     if (file) {
       if ((await handleImageUpload(file, setIsLoading, setResponse)) === 201) {
         // Add staff to database

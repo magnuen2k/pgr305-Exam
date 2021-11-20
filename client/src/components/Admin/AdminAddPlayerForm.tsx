@@ -1,5 +1,5 @@
 import React, { FC, useContext, useState } from "react";
-import { Button, Form, FormControl, InputGroup } from "react-bootstrap";
+import { Button, Form, FormControl } from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { IResponse } from "../../interfaces/IResponse";
@@ -9,11 +9,11 @@ import FilterOptions from "../shared/FilterOptions";
 import Loading from "../shared/Loading";
 import ResponseView from "../shared/ResponseView";
 
-const AdminAddPlayerForm = () => {
+const AdminAddPlayerForm: FC = () => {
   const initialState = {
     name: "",
     club: "Liverpool FC",
-    image: "salah.jpeg",
+    image: "placeholder.png",
     nationality: "",
     dateOfBirth: new Date(),
     position: "",

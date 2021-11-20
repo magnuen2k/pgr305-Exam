@@ -25,12 +25,11 @@ const AdminPlayerItem: FC<IPlayer> = ({
   const [response, setResponse] = useState<IResponse>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  // Try to delete player if id is provided
   const deletePlayerById = async () => {
-    let res;
-
     if (id) {
       try {
-        res = await deletePlayer(id);
+        await deletePlayer(id);
       } catch (e: any) {
         handleError(e, setIsLoading, setResponse);
       }
