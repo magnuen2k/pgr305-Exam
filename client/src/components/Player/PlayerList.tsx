@@ -57,6 +57,7 @@ const PlayerList: FC = () => {
 
   const filterByPosition = (e: any) => {
     setFilterText(e.target.value);
+    setSearchText("");
     if (e.target.value === "reset") {
       setAllPlayers(players);
       setFilteredPlayers(players);
