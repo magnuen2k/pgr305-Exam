@@ -49,13 +49,13 @@ const AdminPlayerList: FC = () => {
       });
   };
 
-  const searchByName = () => {
-    if (searchText.length === 0) {
+  const searchByName = (text: string) => {
+    if (text.length === 0) {
       setFilteredPlayers(players);
     } else {
       const filtered = players.filter((p) => {
         const name = p.name.toLowerCase();
-        return name.includes(searchText);
+        return name.includes(text);
       });
 
       setFilteredPlayers(filtered);
@@ -74,9 +74,11 @@ const AdminPlayerList: FC = () => {
         <FormControl
           placeholder="Search by player name"
           value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+          onChange={(e) => {
+            setSearchText(e.target.value);
+            searchByName(e.target.value);
+          }}
         />
-        <Button onClick={searchByName}>Search</Button>
         <Button variant="light" onClick={resetSearch}>
           Reset search
         </Button>
