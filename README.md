@@ -42,6 +42,8 @@ We've split the frontend in two parts. One for the user-side, where you can just
 
 For the list of players, you can click each player to enter a player-details page for the selected player. For staff, all info is shown in the staff page. The same goes for trophies, but here you can click the 'See year won' to show a list of years Liverpool FC won that specific trophy.
 
+In the list of players for users, there's a filter dropdown where the user can choose to only see players from a specific position. In the admin page for managing players, there's a search-bar to make it easier to find a specific player.
+
 ## Bugs and issues
 Clicking 'players' in the NavBar while in the player component is supposed to bring the user down to the player-list with React-Scroll. This works fine in Safari, but in Chrome the scrolling is behaving weird. 
 
