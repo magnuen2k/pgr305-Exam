@@ -18,7 +18,7 @@ const FilterOptions: FC<IFilterOptionsProps> = ({
       options = options.filter((o) => o !== defaultOption);
       return <option value={defaultOption}>{defaultOption}</option>;
     } else {
-      return <option>-- Show All --</option>;
+      return <option value="reset">-- Show All --</option>;
     }
   };
 

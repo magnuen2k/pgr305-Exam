@@ -1,5 +1,13 @@
 import React, { FC, useContext, useEffect, useState } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Container,
+  InputGroup,
+  FormControl,
+  Button,
+} from "react-bootstrap";
+import styled from "styled-components";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
@@ -11,13 +19,20 @@ import PlayerItem from "./PlayerItem";
 const PlayerList: FC = () => {
   const { players } = useContext(PlayerContext) as PlayerContextType;
   const [allPlayers, setAllPlayers] = useState<IPlayer[]>([]);
+  const [filteredPlayers, setFilteredPlayers] = useState<IPlayer[]>([]);
   const [filterText, setFilterText] = useState<string>("");
+  const [searchText, setSearchText] = useState<string>("");
+
+  useEffect(() => {
+    setAllPlayers(players);
+    setFilteredPlayers(players);
+  }, [players]);
 
   const createPlayerList = () => {
     // Display either full list of players or filtered copy
-    const list = allPlayers.length > 0 ? allPlayers : players;
+    //const list = allPlayers.length > 0 ? allPlayers : players;
 
-    return list
+    return allPlayers
       .sort(
         (a, b) =>
           PLAYER_POSITIONS.indexOf(a.position) -
@@ -40,15 +55,33 @@ const PlayerList: FC = () => {
       });
   };
 
-  useEffect(() => {
-    if (filterText === "reset") {
+  const filterByPosition = (e: any) => {
+    setFilterText(e.target.value);
+    if (e.target.value === "reset") {
       setAllPlayers(players);
+      setFilteredPlayers(players);
     } else {
       setAllPlayers(
-        players.filter((player: IPlayer) => player.position === filterText)
+        players.filter((player: IPlayer) => player.position === e.target.value)
+      );
+      setFilteredPlayers(
+        players.filter((player: IPlayer) => player.position === e.target.value)
       );
     }
-  }, [filterText]);
+  };
+
+  const searchByName = (text: string) => {
+    if (text.length === 0) {
+      setAllPlayers(filteredPlayers);
+    } else {
+      const filtered = filteredPlayers.filter((p) => {
+        const name = p.name.toLowerCase();
+        return name.includes(text);
+      });
+
+      setAllPlayers(filtered);
+    }
+  };
 
   return (
     <Container className="pt-5" id="players">
@@ -58,15 +91,32 @@ const PlayerList: FC = () => {
         <Loading />
       ) : (
         <>
+          <InputGroup>
+            <FormControl
+              placeholder="Search by player name"
+              value={searchText}
+              onChange={(e) => {
+                setSearchText(e.target.value);
+                searchByName(e.target.value);
+              }}
+            />
+          </InputGroup>
           <FilterOptions
-            handleChange={(e: any) => setFilterText(e.target.value)}
+            handleChange={filterByPosition}
             options={PLAYER_POSITIONS}
           />
+          <StyledP>Found: {allPlayers.length}</StyledP>
           <Row>{createPlayerList()}</Row>
         </>
       )}
     </Container>
   );
 };
+
+const StyledP = styled.p`
+  display: inline-block;
+  margin-bottom: 0;
+  margin-top: 1rem;
+`;
 
 export default PlayerList;

@@ -1,4 +1,4 @@
-import { createContext, FC, useCallback, useEffect, useState } from "react";
+import { createContext, FC, useEffect, useState } from "react";
 import { IPlayer } from "../interfaces/IPlayer";
 import { PlayerService } from "../services/PlayerService";
 import { PlayerContextType } from "../types/PlayerContextType";
