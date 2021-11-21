@@ -41,8 +41,6 @@ const PlayerList: FC = () => {
   };
 
   useEffect(() => {
-    console.log(filterText);
-
     if (filterText === "reset") {
       setAllPlayers(players);
     } else {
