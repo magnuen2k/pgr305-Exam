@@ -1,17 +1,32 @@
-import React, { FC, useContext } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import React, { FC, useContext, useEffect, useState } from "react";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  FormControl,
+  InputGroup,
+  Row,
+} from "react-bootstrap";
 import { PlayerContext } from "../../contexts/PlayerContext";
 import { IPlayer } from "../../interfaces/IPlayer";
 import { PlayerContextType } from "../../types/PlayerContextType";
 import Loading from "../shared/Loading";
 import AdminPlayerItem from "./AdminPlayerItem";
 import { PLAYER_POSITIONS } from "../../utils";
+import styled from "styled-components";
 
 const AdminPlayerList: FC = () => {
   const { players } = useContext(PlayerContext) as PlayerContextType;
+  const [filteredPlayers, setFilteredPlayers] = useState<IPlayer[]>([]);
+  const [searchText, setSearchText] = useState<string>("");
+
+  useEffect(() => {
+    setFilteredPlayers(players);
+  }, [players]);
 
   const createPlayerList = () => {
-    return players
+    return filteredPlayers
       .sort(
         (a, b) =>
           PLAYER_POSITIONS.indexOf(a.position) -
@@ -34,12 +49,48 @@ const AdminPlayerList: FC = () => {
       });
   };
 
+  const searchByName = () => {
+    if (searchText.length === 0) {
+      setFilteredPlayers(players);
+    } else {
+      const filtered = players.filter((p) => {
+        const name = p.name.toLowerCase();
+        return name.includes(searchText);
+      });
+
+      setFilteredPlayers(filtered);
+    }
+  };
+
+  const resetSearch = () => {
+    setFilteredPlayers(players);
+    setSearchText("");
+  };
+
   return (
     <Container className="pt-5" id="players">
       <h3 className="mb-3">Manage players</h3>
+      <InputGroup>
+        <FormControl
+          placeholder="Search by player name"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <Button onClick={searchByName}>Search</Button>
+        <Button variant="light" onClick={resetSearch}>
+          Reset search
+        </Button>
+      </InputGroup>
+      <StyledP>Found: {filteredPlayers.length}</StyledP>
       {players.length <= 0 ? <Loading /> : <Row>{createPlayerList()}</Row>}
     </Container>
   );
 };
+
+const StyledP = styled.p`
+  display: inline-block;
+  margin-bottom: 0;
+  margin-top: 1rem;
+`;
 
 export default AdminPlayerList;
