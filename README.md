@@ -5,9 +5,11 @@
 * Exam candidate 2061
 
 ## Our project
-We opted for the theme `Football players / football team` and made a website for the team Liverpool FC.
+We opted for the theme `Football players / football team` and made a website for the team Liverpool FC. It's a website that showcases players, staff and trophies, with options to add and edit all of it. 
 
-Both backend are frontend are built the way shown in class. A .NET/C# Web Api connected to MongoDB, and a frontend made in React with Typescript.
+Both backend and frontend are built the way shown in class. A .NET/C# Web Api connected to MongoDB, and a frontend made in React with Typescript.
+
+Our database is setup so players, staff and trophies are their own collections inside a database. 
 
 
 ## Initialization:
@@ -24,18 +26,21 @@ Info of endpoints can be found through the Swagger interface, found on https://l
 
 The website will then be availbile at http://localhost:3000/
 
-## Structure ////////
+## Structure and decisions
 
 ### Backend:
 The backend is structured like how it was shown in class with Models, Interfaces, Services, Controllers and CORS-setup. 
 
-It allows for all CRUD-operations, and is set up to give the correct response code according to HTML Standards. The difference here from what was shown in class, is that POST will return 201 Created. 
+It allows for all CRUD-operations, and is set up to give the correct response code according to HTTP Standards. The difference here from what was shown in class, is that POST will return 201 Created.
 
 ### Frontend:
-The frontend is structured like shown in class. There's also a folder for utils for function thats used several places, constants such as API URL, etc.
+The frontend is structured like shown in class. We've focused on making components as small and readable as possible. Shared code like API URL and handling of image upload are located in the utils folder, while shared components are in components/shared. 
 
-## Decisions
-Hva vi har brukt av teknikker, accordian osv
+For all axios-calls, there's code to handle and show the response. Errors are dealt with by the shared HandleError function in the utils folder, and showing the response info is done through the shared component ResponseView which utilizes Modal from react-bootstrap.
 
-## Bugs osv?
-Om man legger til årstall 0013 f.eks på trophy yearwon blir det bare '13' i databasen
+We've split the frontend in two parts. One for the user-side, where you can just view, and one for the admin-side, where you can add, edit and delete. 
+
+## Bugs and issues
+Clicking 'players' in the NavBar while in the player component is supposed to bring the user down to the player-list with React-Scroll. This works fine in Safari, but in Chrome the scrolling is behaving weird. 
+
+When doing changes to the database through the frontend, the user has to refresh in order to get the updated info from the database.
