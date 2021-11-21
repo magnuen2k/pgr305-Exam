@@ -8,6 +8,10 @@ export const TrophyContext = createContext<TrophyContextType | null>(null);
 export const TrophyProvider: FC = ({ children }) => {
   const [trophies, setTrophies] = useState<ITrophy[]>([]);
 
+  useEffect(() => {
+    getTrophiesFromService();
+  }, []);
+
   const getTrophyById = (id: string) => {
     return trophies.find((t) => t.id === id) as ITrophy;
   };
@@ -24,11 +28,6 @@ export const TrophyProvider: FC = ({ children }) => {
   const editTrophy = async (trophy: ITrophy) => {
     return await TrophyService.editTrophy(trophy);
   };
-
-  // GET trophies when adding or updating a trophy
-  useEffect(() => {
-    getTrophiesFromService();
-  }, []);
 
   const deleteTrophy = async (id: string) => {
     let res = await TrophyService.deleteTrophy(id);
