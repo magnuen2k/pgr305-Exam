@@ -28,7 +28,7 @@ export const TrophyProvider: FC = ({ children }) => {
   // GET trophies when adding or updating a trophy
   useEffect(() => {
     getTrophiesFromService();
-  }, [addTrophy, editTrophy]);
+  }, []);
 
   const deleteTrophy = async (id: string) => {
     let res = await TrophyService.deleteTrophy(id);

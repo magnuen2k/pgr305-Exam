@@ -1,4 +1,4 @@
-import { createContext, FC, useEffect, useState } from "react";
+import { createContext, FC, useCallback, useEffect, useState } from "react";
 import { IPlayer } from "../interfaces/IPlayer";
 import { PlayerService } from "../services/PlayerService";
 import { PlayerContextType } from "../types/PlayerContextType";
@@ -28,7 +28,7 @@ export const PlayerProvider: FC = ({ children }) => {
   // GET players when adding or updating a player
   useEffect(() => {
     getPlayersFromService();
-  }, [addPlayer, editPlayer]);
+  }, []);
 
   const deletePlayer = async (id: string) => {
     let res = await PlayerService.deletePlayer(id);

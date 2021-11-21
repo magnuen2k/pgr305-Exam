@@ -28,7 +28,7 @@ export const StaffProvider: FC = ({ children }) => {
   // GET staff when adding or updating a staff
   useEffect(() => {
     getStaffFromService();
-  }, [addStaff, editStaff]);
+  }, []);
 
   const deleteStaff = async (id: string) => {
     let res = await StaffService.deleteStaff(id);
