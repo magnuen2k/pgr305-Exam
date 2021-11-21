@@ -38,7 +38,9 @@ The frontend is structured like shown in class. We've focused on making componen
 
 For all axios-calls, there's code to handle and show the response. Errors are dealt with by the shared HandleError function in the utils folder, and showing the response info is done through the shared component ResponseView which utilizes Modal from react-bootstrap.
 
-We've split the frontend in two parts. One for the user-side, where you can just view, and one for the admin-side, where you can add, edit and delete. 
+We've split the frontend in two parts. One for the user-side, where you can just view, and one for the admin-side, where you can add, edit and delete.
+
+For the list of players, you can click each player to enter a player-details page for the selected player. For staff, all info is shown in the staff page. The same goes for trophies, but here you can click the 'See year won' to show a list of years Liverpool FC won that specific trophy.
 
 ## Bugs and issues
 Clicking 'players' in the NavBar while in the player component is supposed to bring the user down to the player-list with React-Scroll. This works fine in Safari, but in Chrome the scrolling is behaving weird. 
